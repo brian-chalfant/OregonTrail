@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+
 public class Game {
 
     public static void main(String[] args) {
@@ -64,71 +65,154 @@ public class Game {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int userInput;
         boolean purchaseCompeted = false;
-        Double bill = 0.00;
+        double bill = 0.00;
         int oxenAmount = 0;
-        Double foodAmount = 0.00;
+        int foodAmount = 0;
         int clothingAmount = 0;
         int ammoAmount = 0;
-        int wagonWheelAmount = 0;
-        int wagonAxleAmount = 0;
-        int wagonTongueAmount = 0;
-        int sparePartsAmount = wagonAxleAmount + wagonTongueAmount + wagonWheelAmount;
+        //int wagonWheelAmount = 0;
+        //int wagonAxleAmount = 0;
+        //int wagonTongueAmount = 0;
+        int[] sparePartsAmount = new int[3];
         while(!purchaseCompeted){
             try {
                 System.out.println("1. Oxen: $" + oxenAmount * 30 + ".00");
                 System.out.println("2. Food: $" + foodAmount * .20);
                 System.out.println("3. Clothing: $" + clothingAmount * 10 + ".00");
                 System.out.println("4. Ammunition: $" + ammoAmount * 30 + ".00");
-                System.out.println("5. SpareParts: $" + sparePartsAmount * 10 + ".00");
+                System.out.println("5. SpareParts: $" + IntStream.of(sparePartsAmount).sum() * 10 + ".00");
                 System.out.println("----------------------------------------------");
+                System.out.println("Your current bill is: $" + bill);
+                System.out.println("You have: $" + player.getMoney());
                 System.out.println("What would you like to buy?");
                 userInput = Integer.parseInt(reader.readLine());
                 switch(userInput){
                     case 1:
-                        oxenAmount += buyOxen();
+                        oxenAmount += buyOxen(bill);
+                        bill += oxenAmount * 30;
                         break;
                     case 2:
-                        buyFood();
+                        foodAmount = buyFood(bill);
+                        bill += foodAmount + .20;
                         break;
                     case 3:
-                        buyClothing();
+                        clothingAmount = buyClothing(bill);
+                        bill += clothingAmount * 10;
                         break;
                     case 4:
-                        buyAmmunition();
+                        ammoAmount = buyAmmunition(bill);
+                        bill += ammoAmount * 2;
                         break;
                     case 5:
-                        buySpareParts();
+                        sparePartsAmount = buySpareParts(bill);
+                        bill += IntStream.of(sparePartsAmount).sum() * 10;
                         break;
+                    case 0:
+                        if(bill > player.getMoney()){
+                            System.out.println("Sorry, you can't afford all of that");
+                        } else {
+                            player.setMoney(player.getMoney() - bill);
+                            player.setOxenAmount(player.getOxenAmount() + oxenAmount);
+                            player.setFoodAmount(player.getFoodAmount() + foodAmount);
+                            player.setClothingAmount(player.getClothingAmount() + clothingAmount);
+                            player.setAmmoAmount(player.getAmmoAmount() + ammoAmount);
+                            for(int i = 0;i<3;i++){
+                                player.getSpareParts()[i] += sparePartsAmount[i];
+                            }
+                            bill = 0.0;
+                            purchaseCompeted = true;
+                        }
                 }
+
             } catch (IOException e){
                 System.out.println("Sorry what was that sonny boy?");
             }
+        }
+    }
 
+    private static int[] buySpareParts(double bill) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String[] spareParts = new String[]{"wagon wheels", "wagon axle", "wagon tongue"};
+        int[] numberPurchased = new int[]{0,0,0};
+        System.out.println("*Buy Spare Parts*");
+        System.out.println("Bill so far: $" + bill);
+        System.out.println("It's a good idea to have a few");
+        System.out.println("spare parts for your wagon");
+        System.out.println("Here are the prices:");
+        System.out.println("");
+        System.out.println("wagon wheel - $10 each");
+        System.out.println("wagon axle - $10 each");
+        System.out.println("wagon tongue - $10 each");
+        try{
+            for(int i = 0;i<spareParts.length;i++){
+                System.out.println("How many " + spareParts[i]+"?: ");
+                numberPurchased[i]= Integer.parseInt(reader.readLine());
+            }
+            return numberPurchased;
+        } catch (IOException e) {
+            return new int[]{0,0,0};
+        }
+    }
 
+    private static int buyAmmunition(double bill) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("*Buy Ammo*");
+        System.out.println("Bill so far: $" + bill);
+        System.out.println("I sell ammunition in boxes of 20");
+        System.out.println("bullets. Each box costs $2.00.");
+        System.out.println("");
+        System.out.println("How many boxes do");
+        System.out.println("you want? ");
+        try{
+            return Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    private static int buyClothing(double bill) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("*Buy Clothes*");
+        System.out.println("Bill so far: $" + bill);
+        System.out.println("You'll need warm clothing in the");
+        System.out.println("mountains. I recommend taking at");
+        System.out.println("least 2 sets of clothes per person.");
+        System.out.println("Each set is $10.00.");
+        System.out.println("");
+        System.out.println("How many sets of clothes do");
+        System.out.println("you want? ");
+        try{
+            return Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    private static int buyFood(double bill) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("*Buy Food*");
+        System.out.println("Bill so far: $" + bill);
+        System.out.println("I recommend that you take at least");
+        System.out.println("200 pounds of food for each person");
+        System.out.println("in your family.  I see that you have");
+        System.out.println("5 people in all.  You'll need flour,");
+        System.out.println("sugar, bacon, and coffee.  My price");
+        System.out.println("is 20 cents a pound.");
+        System.out.println("");
+        System.out.println("How many pounds of food do");
+        System.out.println("you want? ");
+        try{
+            return Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            return 0;
         }
 
-
     }
 
-    private static void buySpareParts() {
-
-    }
-
-    private static void buyAmmunition() {
-
-    }
-
-    private static void buyClothing() {
-
-    }
-
-    private static void buyFood() {
-
-    }
-
-    private static int buyOxen() {
+    private static int buyOxen(double bill) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("*Buy Oxen*");
+        System.out.println("Bill so far: $" + bill);
         System.out.println("There are 2 Oxen in a Yoke");
         System.out.println("I recommend at least 3 Yoke");
         System.out.println("I charge $30 a yoke.");

@@ -22,10 +22,10 @@ public class Player {
 
     private Member[] members = new Member[]{member2, member3, member4, member5};
     private Occupation occupation;
-    private int money;
+    private double money;
     private int oxenAmount;
     private int clothingAmount;
-    private int bulletAmount;
+    private int ammoAmount;
     private int[] sparePartsAmount = new int[]{0,0,0};
     private int foodAmount;
     private int pace;
@@ -65,11 +65,11 @@ public class Player {
         this.occupation = occupation;
     }
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 
@@ -89,12 +89,12 @@ public class Player {
         this.clothingAmount = clothingAmount;
     }
 
-    public int getBulletAmount() {
-        return bulletAmount;
+    public int getAmmoAmount() {
+        return ammoAmount;
     }
 
-    public void setBulletAmount(int bulletAmount) {
-        this.bulletAmount = bulletAmount;
+    public void setAmmoAmount(int ammoAmount) {
+        this.ammoAmount = ammoAmount;
     }
 
     public int getSparePartsAmount() {
