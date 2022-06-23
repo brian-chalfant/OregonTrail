@@ -2,10 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Game {
+    static LinkedList<Landmark> TRAILS = buildTrail();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -43,7 +46,34 @@ public class Game {
                 "        - spare parts for your wagon");
         Store(player);
 
+        System.out.println("Now Loading the Wagon");
+        GameLoop(player);
 
+
+
+    }
+
+    private static void TravelLoop(Player player, Landmark destination){
+        while(player.getMilesTraveled() < destination.distance){
+            //travel the road
+            System.out.println("Traveling 20 miles...");
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            player.setMilesTraveled(player.getMilesTraveled() + 20);
+        }
+        System.out.println("Arrived at " + destination.name);
+    }
+
+    private static void GameLoop(Player player){
+        Iterator i = TRAILS.iterator();
+        while(i.hasNext()) {
+            TravelLoop(player, (Landmark) i.next());
+        }
+        System.out.println("Congratulations!");
     }
 
 
@@ -85,7 +115,12 @@ public class Game {
                 System.out.println("Your current bill is: $" + bill);
                 System.out.println("You have: $" + player.getMoney());
                 System.out.println("What would you like to buy?");
-                userInput = Integer.parseInt(reader.readLine());
+                try{
+                    userInput = Integer.parseInt(reader.readLine());
+                } catch (NumberFormatException e){
+                    userInput = 0;
+                }
+
                 switch(userInput){
                     case 1:
                         oxenAmount += buyOxen(bill);
@@ -107,7 +142,7 @@ public class Game {
                         sparePartsAmount = buySpareParts(bill);
                         bill += IntStream.of(sparePartsAmount).sum() * 10;
                         break;
-                    case 0:
+                    default:
                         if(bill > player.getMoney()){
                             System.out.println("Sorry, you can't afford all of that");
                         } else {
@@ -227,5 +262,17 @@ public class Game {
 
     }
 
+    private static LinkedList<Landmark> buildTrail(){
+        LinkedList<Landmark> trails = new LinkedList<>();
+        Landmark kearny = new Landmark("Fort Kearny, Nebraska", true, 319);
+        trails.addFirst(kearny);
+        Landmark chimney = new Landmark("Chimney Rock, Nebraska", false, 504);
+        trails.add(chimney);
+        Landmark laramie = new Landmark("Fort Laramie, Wyoming", true, 750);
+        trails.add(laramie);
+        return trails;
+    }
+
 
 }
+

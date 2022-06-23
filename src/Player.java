@@ -31,6 +31,16 @@ public class Player {
     private int pace;
     private int rations;
 
+    public int getMilesTraveled() {
+        return milesTraveled;
+    }
+
+    public void setMilesTraveled(int milesTraveled) {
+        this.milesTraveled = milesTraveled;
+    }
+
+    private int milesTraveled;
+
     public String getStartingDate() {
         return startingDate;
     }
