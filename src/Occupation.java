@@ -1,5 +1,5 @@
 public enum Occupation {
-    BANKER(1600), CARPENTER(800), FARMER(400);
+    BANKER(160000), CARPENTER(80000), FARMER(40000);
 
     public int getStartingCash() {
         return startingCash;
@@ -11,9 +11,3 @@ public enum Occupation {
     }
         
 }
-
-
-
-
-
-

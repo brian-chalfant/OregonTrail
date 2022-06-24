@@ -91,11 +91,16 @@ public class Game {
 
     }
 
+    private static String displayMoney(int cents){
+        int absCents = Math.abs(cents);
+        return String.format((cents >= 0 ? "" : "-") + "$%d.%02d", absCents / 100, absCents % 100);
+    }
+
     private static void Store(Player player){
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int userInput;
         boolean purchaseCompeted = false;
-        double bill = 0.00;
+        int bill = 0;
         int oxenAmount = 0;
         int foodAmount = 0;
         int clothingAmount = 0;
@@ -106,14 +111,14 @@ public class Game {
         int[] sparePartsAmount = new int[3];
         while(!purchaseCompeted){
             try {
-                System.out.println("1. Oxen: $" + oxenAmount * 30 + ".00");
-                System.out.println("2. Food: $" + foodAmount * .20);
-                System.out.println("3. Clothing: $" + clothingAmount * 10 + ".00");
-                System.out.println("4. Ammunition: $" + ammoAmount * 30 + ".00");
-                System.out.println("5. SpareParts: $" + IntStream.of(sparePartsAmount).sum() * 10 + ".00");
+                System.out.println("1. Oxen: " + displayMoney(oxenAmount * 3000));
+                System.out.println("2. Food: " + displayMoney(foodAmount * 20));
+                System.out.println("3. Clothing: " + displayMoney(clothingAmount * 1000));
+                System.out.println("4. Ammunition: " + displayMoney(ammoAmount * 200));
+                System.out.println("5. SpareParts: " + displayMoney(IntStream.of(sparePartsAmount).sum() * 1000));
                 System.out.println("----------------------------------------------");
-                System.out.println("Your current bill is: $" + bill);
-                System.out.println("You have: $" + player.getMoney());
+                System.out.println("Your current bill is: " + displayMoney(bill));
+                System.out.println("You have: " + displayMoney(player.getMoney()));
                 System.out.println("What would you like to buy?");
                 try{
                     userInput = Integer.parseInt(reader.readLine());
@@ -123,24 +128,31 @@ public class Game {
 
                 switch(userInput){
                     case 1:
-                        oxenAmount += buyOxen(bill);
-                        bill += oxenAmount * 30;
+                        int newOxen = buyOxen(bill);
+                        oxenAmount += newOxen;
+                        bill += newOxen * 3000;
                         break;
                     case 2:
-                        foodAmount = buyFood(bill);
-                        bill += foodAmount + .20;
+                        int newFood = buyFood(bill);
+                        foodAmount += newFood;
+                        bill += newFood * 20;
                         break;
                     case 3:
-                        clothingAmount = buyClothing(bill);
-                        bill += clothingAmount * 10;
+                        int newClothing = buyClothing(bill);
+                        clothingAmount += newClothing;
+                        bill += newClothing * 1000;
                         break;
                     case 4:
-                        ammoAmount = buyAmmunition(bill);
-                        bill += ammoAmount * 2;
+                        int newAmmo = buyAmmunition(bill);
+                        ammoAmount += newAmmo;
+                        bill += newAmmo * 200;
                         break;
                     case 5:
-                        sparePartsAmount = buySpareParts(bill);
-                        bill += IntStream.of(sparePartsAmount).sum() * 10;
+                        int[] newParts = buySpareParts(bill);
+                        for(int i = 0; i < sparePartsAmount.length; i++){
+                            sparePartsAmount[i] += newParts[i];
+                        }
+                        bill += IntStream.of(sparePartsAmount).sum() * 1000;
                         break;
                     default:
                         if(bill > player.getMoney()){
@@ -154,7 +166,7 @@ public class Game {
                             for(int i = 0;i<3;i++){
                                 player.getSpareParts()[i] += sparePartsAmount[i];
                             }
-                            bill = 0.0;
+                            bill = 0;
                             purchaseCompeted = true;
                         }
                 }
@@ -165,12 +177,12 @@ public class Game {
         }
     }
 
-    private static int[] buySpareParts(double bill) {
+    private static int[] buySpareParts(int bill) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String[] spareParts = new String[]{"wagon wheels", "wagon axle", "wagon tongue"};
         int[] numberPurchased = new int[]{0,0,0};
         System.out.println("*Buy Spare Parts*");
-        System.out.println("Bill so far: $" + bill);
+        System.out.println("Bill so far: " + displayMoney(bill));
         System.out.println("It's a good idea to have a few");
         System.out.println("spare parts for your wagon");
         System.out.println("Here are the prices:");
@@ -189,10 +201,10 @@ public class Game {
         }
     }
 
-    private static int buyAmmunition(double bill) {
+    private static int buyAmmunition(int bill) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("*Buy Ammo*");
-        System.out.println("Bill so far: $" + bill);
+        System.out.println("Bill so far: " + displayMoney(bill));
         System.out.println("I sell ammunition in boxes of 20");
         System.out.println("bullets. Each box costs $2.00.");
         System.out.println("");
@@ -205,10 +217,10 @@ public class Game {
         }
     }
 
-    private static int buyClothing(double bill) {
+    private static int buyClothing(int bill) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("*Buy Clothes*");
-        System.out.println("Bill so far: $" + bill);
+        System.out.println("Bill so far: " + displayMoney(bill));
         System.out.println("You'll need warm clothing in the");
         System.out.println("mountains. I recommend taking at");
         System.out.println("least 2 sets of clothes per person.");
@@ -223,10 +235,10 @@ public class Game {
         }
     }
 
-    private static int buyFood(double bill) {
+    private static int buyFood(int bill) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("*Buy Food*");
-        System.out.println("Bill so far: $" + bill);
+        System.out.println("Bill so far: " + displayMoney(bill));
         System.out.println("I recommend that you take at least");
         System.out.println("200 pounds of food for each person");
         System.out.println("in your family.  I see that you have");
@@ -244,10 +256,10 @@ public class Game {
 
     }
 
-    private static int buyOxen(double bill) {
+    private static int buyOxen(int bill) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("*Buy Oxen*");
-        System.out.println("Bill so far: $" + bill);
+        System.out.println("Bill so far: " + displayMoney(bill));
         System.out.println("There are 2 Oxen in a Yoke");
         System.out.println("I recommend at least 3 Yoke");
         System.out.println("I charge $30 a yoke.");
