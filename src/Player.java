@@ -22,7 +22,7 @@ public class Player {
 
     private Member[] members = new Member[]{member2, member3, member4, member5};
     private Occupation occupation;
-    private double money;
+    private int money;
     private int oxenAmount;
     private int clothingAmount;
     private int ammoAmount;
@@ -75,11 +75,11 @@ public class Player {
         this.occupation = occupation;
     }
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 
