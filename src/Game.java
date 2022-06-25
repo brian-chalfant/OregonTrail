@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Game {
-    static LinkedList<Landmark> TRAILS = buildTrail();
+    static LinkedList<Landmark> TRAILS = new LinkedList<>(); //Should call BuildTrail
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -274,16 +274,9 @@ public class Game {
 
     }
 
-    private static LinkedList<Landmark> buildTrail(){
-        LinkedList<Landmark> trails = new LinkedList<>();
-        Landmark kearny = new Landmark("Fort Kearny, Nebraska", true, 319);
-        trails.addFirst(kearny);
-        Landmark chimney = new Landmark("Chimney Rock, Nebraska", false, 504);
-        trails.add(chimney);
-        Landmark laramie = new Landmark("Fort Laramie, Wyoming", true, 750);
-        trails.add(laramie);
-        return trails;
-    }
+/*    private static LinkedList<Landmark> buildTrail(){
+
+    }*/
 
 
 }
