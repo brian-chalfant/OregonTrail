@@ -3,7 +3,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Game {
+
     static LinkedList<Landmark> TRAILS = buildTrail();
+
 
     public static void main(String[] args) {
 
@@ -63,15 +65,8 @@ public class Game {
         Utils.println("congrats");
     }
 
-    private static LinkedList<Landmark> buildTrail(){
-        LinkedList<Landmark> trails = new LinkedList<>();
-        Landmark kearny = new Landmark("Fort Kearny, Nebraska", true, 319);
-        trails.addFirst(kearny);
-        Landmark chimney = new Landmark("Chimney Rock, Nebraska", false, 504);
-        trails.add(chimney);
-        Landmark laramie = new Landmark("Fort Laramie, Wyoming", true, 750);
-        trails.add(laramie);
-        return trails;
+private static LinkedList<Landmark> buildTrail(){
+        return new LinkedList<Landmark>();
     }
 
 }
