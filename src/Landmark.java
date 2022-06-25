@@ -1,9 +1,9 @@
 public class Landmark {
     final String name;
-    final boolean isCity;
-    final boolean isRiver;
+     boolean isCity;
+     boolean isRiver;
 
-    public Landmark(String name, boolean isCity, int distance) {
+    public Landmark(String name, boolean isCity, boolean isRiver, int distance) {
         this.name = name;
         this.isCity = isCity;
         this.isRiver = isRiver;
