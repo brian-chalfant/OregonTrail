@@ -10,12 +10,10 @@
     "loading_wagon": [
         "Now Loading the Wagon"
     ],
-    "display_shop": [
-        "1. Oxen: %s",
-        "2. Food: %s",
-        "3. Clothing: %s",
-        "4. Ammunition: %s",
-        "5. SpareParts: %s",
+    "display_shop_item": [
+        "%d. %s: %s"
+    ],
+    "display_shop_total": [
         "----------------------------------------------",
         "Your current bill is: %s",
         "You have: %s",
@@ -38,7 +36,7 @@
         "wagon axle - $10 each",
         "wagon tongue - $10 each"
     ],
-    "buy_single_spare_part": [
+    "buy_single_part": [
         "How many %s?: "
     ],
     "buy_ammo": [
