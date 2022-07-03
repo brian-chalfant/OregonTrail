@@ -1,11 +1,13 @@
+import org.json.simple.JSONObject;
+
 public class ShopEntity {
     public String name;
 
-    public ShopEntity(String name) {
-        this.name = name;
+    public ShopEntity(JSONObject o) {
+        this.name = (String)o.get("name");
     }
 
-    public String shopMessageID(){
-        return "buy_" + name.toLowerCase().replaceAll(" ", "_");
+    public String getID(){
+        return this.name.toLowerCase().replaceAll(" ", "_");
     }
 }

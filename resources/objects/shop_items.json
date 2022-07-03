@@ -1,0 +1,36 @@
+[{
+        "name": "Oxen",
+        "price": 3000,
+        "quantity": 2
+    },
+    {
+        "name": "Food",
+        "price": 20,
+        "quantity": 1
+    },
+    {
+        "name": "Clothing",
+        "price": 1000,
+        "quantity": 1
+    },
+    {
+        "name": "Ammo",
+        "price": 200,
+        "quantity": 20
+    },
+    {
+        "name": "Wagon Wheels",
+        "price": 1000,
+        "quantity": 1
+    },
+    {
+        "name": "Wagon Axle",
+        "price": 1000,
+        "quantity": 1
+    },
+    {
+        "name": "Wagon Tongue",
+        "price": 1000,
+        "quantity": 1
+    }
+]

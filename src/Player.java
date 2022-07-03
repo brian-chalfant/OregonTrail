@@ -8,11 +8,11 @@ public class Player {
     private Occupation occupation;
     private int money;
     
-    private HashMap<ItemEnum, Integer> inventory = new HashMap<>();
+    private HashMap<ShopItem, Integer> inventory = new HashMap<>();
 
     private int pace;
     private int rations;
-    private String startingDate;
+    private Month startingDate;
     private String status;
     private int milesTraveled;
 
@@ -46,11 +46,11 @@ public class Player {
         this.milesTraveled = milesTraveled;
     }
 
-    public String getStartingDate() {
+    public Month getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(String startingDate) {
+    public void setStartingDate(Month startingDate) {
         this.startingDate = startingDate;
     }
 
@@ -78,15 +78,15 @@ public class Player {
         this.money = money;
     }
 
-    public void applyPurchases(HashMap<ItemEnum, Integer> purchases){
-        for (Map.Entry<ItemEnum,Integer> p : purchases.entrySet()) {
+    public void applyPurchases(HashMap<ShopItem, Integer> purchases){
+        for (Map.Entry<ShopItem,Integer> p : purchases.entrySet()) {
             int amount = inventory.getOrDefault(p.getKey(), 0) + p.getValue();
             inventory.put(p.getKey(), amount);
         }
     }
 
-    public int getInventory(ItemEnum id){
-        return inventory.getOrDefault(id, 0);
+    public int getInventory(ShopItem item){
+        return inventory.getOrDefault(item, 0);
     }
 
     public int getPace() {
