@@ -41,16 +41,18 @@ public class Game {
     }
 
     private static void TravelLoop(Player player, Landmark destination){
+        int travelDelay = Settings.getInt("travel_delay");
+        int travelDistance = Settings.getInt("travel_distance");
         while(player.getMilesTraveled() < destination.distance){
             //travel the road
-            Utils.println("travel");
+            Utils.println("travel", travelDistance);
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(travelDelay);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            player.setMilesTraveled(player.getMilesTraveled() + 20);
+            player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
         }
         Utils.println("arrived", destination.name);
     }
