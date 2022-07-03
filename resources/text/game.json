@@ -1,6 +1,6 @@
 {
     "travel": [
-        "Traveling 20 miles..."
+        "Traveling %d miles..."
     ],
     "arrived": [
         "Arrived at %s"

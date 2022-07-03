@@ -1,30 +1,16 @@
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class TextManager {
     private HashMap<String, String> data = new HashMap<>();
     
     public TextManager(String jsonDirectory){
-        JSONParser parser = new JSONParser();
         File jsonDir = new File(jsonDirectory);
         
         for(File jsonFile: jsonDir.listFiles()){
-            JSONObject obj = null;
-            try {
-                obj = (JSONObject)parser.parse(new FileReader(jsonFile));
-            } catch (IOException | ParseException e) {
-                System.err.println("Failed to load json file: " + jsonFile.getAbsolutePath());
-                e.printStackTrace();
-                continue;
-            }
-
+            HashMap<String, Object> obj = Utils.readJSON(jsonFile);
             for(Object key : obj.keySet()){
                 data.put((String)key, String.join("\n", Utils.castList((JSONArray)obj.get(key))));
             }

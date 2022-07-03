@@ -1,23 +1,12 @@
 import java.util.HashMap;
 
 public class Shop {
-    private static ShopItemGroup[] groups = new ShopItemGroup[]{
-        new ShopItemGroup("Oxen", ItemEnum.OXEN, 3000, 2),
-        new ShopItemGroup("Food",ItemEnum.FOOD, 20, 1),
-        new ShopItemGroup("Clothing",ItemEnum.CLOTHING, 1000, 1),
-        new ShopItemGroup("Ammo",ItemEnum.AMMO, 200, 20),
-        new ShopItemGroup("Spare Parts",
-            new ShopItem("Wagon Wheels",ItemEnum.WAGON_WHEELS, 1000, 1),
-            new ShopItem("Wagon Axle",ItemEnum.WAGON_AXLE, 1000, 1),
-            new ShopItem("Wagon Tongue",ItemEnum.WAGON_TONGUE, 1000, 1)
-        )
-    };
-
     public static void run(Player player){
-        HashMap<ItemEnum, Integer> purchases = new HashMap<>();
+        HashMap<ShopItem, Integer> purchases = new HashMap<>();
         int bill = 0;
 
         boolean purchaseCompeted = false;
+        ShopItemGroup[] groups = ShopItemGroup.values;
         while(!purchaseCompeted){
             for(int i = 0; i < groups.length; i++){
                 ShopItemGroup group = groups[i];
@@ -47,11 +36,11 @@ public class Shop {
         }
     }
 
-    private static int getCost(HashMap<ItemEnum, Integer> purchases, ShopItemGroup group){
+    private static int getCost(HashMap<ShopItem, Integer> purchases, ShopItemGroup group){
         int cost = 0;
         for(int i = 0; i < group.size(); i++){
             ShopItem item = group.get(i);
-            cost += item.price * purchases.getOrDefault(item.id, 0) / item.quantity;
+            cost += item.price * purchases.getOrDefault(item, 0) / item.quantity;
         }
         return cost;
     }
@@ -61,10 +50,9 @@ public class Shop {
         return String.format((cents >= 0 ? "" : "-") + "$%d.%02d", absCents / 100, absCents % 100);
     }
 
-    private static int purchaseItem(HashMap<ItemEnum, Integer> purchases, ShopItem item){
-        ItemEnum itemId = item.id;
+    private static int purchaseItem(HashMap<ShopItem, Integer> purchases, ShopItem item){
         int amount = Keyboard.nextInt(0);
-        purchases.put(itemId, amount * item.quantity + purchases.getOrDefault(itemId, 0));
+        purchases.put(item, amount * item.quantity + purchases.getOrDefault(item, 0));
         return item.price * amount;
     }
 }
