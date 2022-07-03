@@ -1,10 +1,9 @@
 
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Game {
-
-    static LinkedList<Landmark> TRAILS = buildTrail();
+    static HashMap<Integer, Landmark> TRAILS = LandmarkParser.parseLandmarks();
+    //static LinkedList<Landmark> TRAILS = buildTrail();
 
 
     public static void main(String[] args) {
@@ -43,7 +42,8 @@ public class Game {
     }
 
     private static void TravelLoop(Player player, Landmark destination){
-        while(player.getMilesTraveled() < destination.distance){
+        int StartingMilesTraveled = player.getMilesTraveled();
+        while(player.getMilesTraveled() < (destination.p1Miles + StartingMilesTraveled)){
             //travel the road
             Utils.println("travel");
 
@@ -58,10 +58,23 @@ public class Game {
     }
 
     private static void GameLoop(Player player){
-        Iterator i = TRAILS.iterator();
+        Landmark current = TRAILS.get(0);
+            while(current.id != 17){
+                Landmark next = TRAILS.get(current.nextPoint1);
+                TravelLoop(player, next);
+                System.out.println("Total Miles Traveled: " + player.getMilesTraveled());
+                current = next;
+                if(current.nextPoint2 >= 0){
+                    //TODO: query user which point to go to
+                    next = TRAILS.get(current.nextPoint2);
+                } else {
+                    next = TRAILS.get(current.nextPoint1);
+                }
+            }
+/*        Iterator i = TRAILS.iterator();
         while(i.hasNext()) {
             TravelLoop(player, (Landmark) i.next());
-        }
+        }*/
         Utils.println("congrats");
     }
 
