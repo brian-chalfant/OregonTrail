@@ -1,0 +1,10 @@
+[
+    { "items": ["oxen"] },
+    { "items": ["food"] },
+    { "items": ["clothing"] },
+    { "items": ["ammo"] },
+    {
+        "name": "Spare Parts",
+        "items": ["wagon_wheels", "wagon_axle", "wagon_tongue"]
+    }
+]

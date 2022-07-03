@@ -13,7 +13,7 @@ public class Game {
 
         //Prompt Occupation
         Utils.println("occupation");
-        Occupation occ = Utils.choice(new Occupation[]{Occupation.BANKER, Occupation.CARPENTER, Occupation.FARMER});
+        Occupation occ = Utils.choice(Occupation.values);
 
         //Initialize player object
         Player player = new Player(name, occ);
@@ -29,7 +29,7 @@ public class Game {
 
         //Prompt starting date
         Utils.println("select_month");
-        player.setStartingDate(Utils.choice(new String[]{"March", "April", "May", "June", "July"}));
+        player.setStartingDate(Utils.choice(Month.values));
 
         Utils.println("shop_intro");
         Shop.run(player);
@@ -41,16 +41,18 @@ public class Game {
     }
 
     private static void TravelLoop(Player player, Landmark destination){
+        int travelDelay = Settings.getInt("travel_delay");
+        int travelDistance = Settings.getInt("travel_distance");
         while(player.getMilesTraveled() < destination.distance){
             //travel the road
-            Utils.println("travel");
+            Utils.println("travel", travelDistance);
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(travelDelay);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            player.setMilesTraveled(player.getMilesTraveled() + 20);
+            player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
         }
         Utils.println("arrived", destination.name);
     }

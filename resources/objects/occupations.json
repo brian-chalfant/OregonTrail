@@ -1,0 +1,13 @@
+[{
+        "name": "Banker",
+        "startingCash": 160000
+    },
+    {
+        "name": "Carpenter",
+        "startingCash": 80000
+    },
+    {
+        "name": "Farmer",
+        "startingCash": 40000
+    }
+]
