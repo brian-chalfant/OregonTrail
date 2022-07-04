@@ -7,11 +7,12 @@ public class Game {
         //Prompt Player Name
         Utils.print("player_name");
         String name = Keyboard.nextLine();
+        Utils.clearScreen();
 
         //Prompt Occupation
         Utils.println("occupation");
         Occupation occ = Utils.choice(Occupation.values);
-
+        Utils.clearScreen();
         //Initialize player object
         Player player = new Player(name, occ);
 
@@ -23,11 +24,12 @@ public class Game {
             String memberName = Keyboard.nextLine();
             i.setName(memberName);
         }
+        Utils.clearScreen();
 
         //Prompt starting date
         Utils.println("select_month");
         player.setStartingDate(Utils.choice(Month.values));
-
+        Utils.clearScreen();
         Utils.println("shop_intro");
         Shop.run(player);
 

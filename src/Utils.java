@@ -16,7 +16,7 @@ public class Utils {
 
     public static ArrayList<String> castList(JSONArray list){
         ArrayList<String> out = new ArrayList<>();
-        for(Object obj: list){
+        for (Object obj : list) {
             out.add(obj.toString());
         }
         return out;
@@ -95,5 +95,10 @@ public class Utils {
         if(clazz == ShopItemGroup.class) return new ShopItemGroup(o);
         System.err.println("Failed to parse: " + clazz);
         return null;
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
