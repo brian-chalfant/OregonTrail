@@ -16,6 +16,7 @@ public class Shop {
             Utils.println("clear_shop", groups.length + 1);
             Utils.println("display_shop_total", displayMoney(bill), displayMoney((player.getMoney())));
             int userInput = Keyboard.nextInt(0) - 1;
+            Utils.clearScreen();
 
             if(userInput >= 0 && userInput < groups.length){
                 ShopItemGroup group = groups[userInput];
@@ -55,6 +56,7 @@ public class Shop {
 
     private static int purchaseItem(HashMap<ShopItem, Integer> purchases, ShopItem item, int balance){
         int amount = Keyboard.ensureNextInt(0);
+        Utils.clearScreen();
         int cost = item.price * amount;
         if(cost > balance || cost < 0){
             Utils.println("overbudget");
