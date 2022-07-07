@@ -1,0 +1,5 @@
+{
+    "invalid_number": ["please enter a valid number"],
+    "out_of_range": ["please enter a number between %d and %d"],
+    "under_range": ["please enter atleast %d"]
+}

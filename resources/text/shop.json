@@ -13,6 +13,9 @@
     "display_shop_item": [
         "%d. %s: %s"
     ],
+    "clear_shop": [
+        "%d. Clear"
+    ],
     "display_shop_total": [
         "----------------------------------------------",
         "Your current bill is: %s",

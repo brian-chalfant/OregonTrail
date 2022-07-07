@@ -13,6 +13,7 @@ public class Shop {
                 int cost = getCost(purchases, group);
                 Utils.println("display_shop_item", i + 1, group.name, displayMoney(cost));
             }
+            Utils.println("clear_shop", groups.length + 1);
             Utils.println("display_shop_total", displayMoney(bill), displayMoney((player.getMoney())));
             int userInput = Keyboard.nextInt(0) - 1;
 
@@ -24,11 +25,13 @@ public class Shop {
                     if(group.size() > 1){
                         Utils.println("buy_single_part", item.name.toLowerCase());
                     }
-                    bill += purchaseItem(purchases, item);
+                    bill += purchaseItem(purchases, item, player.getMoney() - bill);
                 }
-            }else if(bill > player.getMoney()){
-                Utils.println("overbudget");
-            } else {
+            }else if (userInput == groups.length){
+                // clear shopping items
+                bill = 0;
+                purchases.clear();
+            }else {
                 player.setMoney(player.getMoney() - bill);
                 player.applyPurchases(purchases);
                 purchaseCompeted = true;
@@ -50,9 +53,14 @@ public class Shop {
         return String.format((cents >= 0 ? "" : "-") + "$%d.%02d", absCents / 100, absCents % 100);
     }
 
-    private static int purchaseItem(HashMap<ShopItem, Integer> purchases, ShopItem item){
-        int amount = Keyboard.nextInt(0);
+    private static int purchaseItem(HashMap<ShopItem, Integer> purchases, ShopItem item, int balance){
+        int amount = Keyboard.ensureNextInt(0);
+        int cost = item.price * amount;
+        if(cost > balance || cost < 0){
+            Utils.println("overbudget");
+            return 0;
+        }
         purchases.put(item, amount * item.quantity + purchases.getOrDefault(item, 0));
-        return item.price * amount;
+        return cost;
     }
 }
