@@ -1,25 +1,25 @@
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Landmark {
     final String name;
-     boolean isCity;
+    boolean isCity;
      boolean isRiver;
-     long id;
-     String s1;
-     String s2;
-     String s3;
-     int nextPoint1;
-     int p1Miles;
-     int nextPoint2;
-     int p2Miles;
+     int id;
+     JSONArray sayings;
+     HashMap<Integer, Integer> points = new HashMap<>();
      int riverDepth;
      int riverWidth;
+
 
     public Landmark(String name, boolean isCity, boolean isRiver, int distance) {
         this.name = name;
         this.isCity = isCity;
         this.isRiver = isRiver;
-        this.distance = distance;
     }
 
     /*
@@ -39,29 +39,44 @@ public class Landmark {
     "riverWidth": ""
     * */
     public Landmark(JSONObject obj) {
-        this.id = (Long) obj.get("id");
+        this.id = Utils.castInt(obj.get("id"));
         this.name = (String) obj.get("name");
         this.isCity = (boolean) obj.get("isCity");
         this.isRiver = (boolean) obj.get("isRiver");
-        this.s1 = (String) obj.get("s1");
-        this.s2 = (String) obj.get("s2");
-        this.s3 = (String) obj.get("s3");
-        this.nextPoint1 = Integer.parseInt(String.valueOf(obj.get("nextPointID")));
-        this.p1Miles = Integer.parseInt(String.valueOf(obj.get("p1miles")));
-        this.nextPoint2 = Integer.parseInt(String.valueOf(obj.get("nextPoint2")));
-        this.p2Miles = Integer.parseInt(String.valueOf(obj.get("p2miles")));
-        this.riverDepth = Integer.parseInt(String.valueOf(obj.get("riverDepth")));
-        this.riverWidth = Integer.parseInt(String.valueOf(obj.get("riverWidth")));
+        this.sayings = (JSONArray) obj.get("sayings");
 
+        JSONArray p = (JSONArray) obj.get("nextPoints");
+        for (Object o : p) {
+            JSONObject rr = (JSONObject) o;
+            int id = Utils.castInt(rr.get("id"));
+            int distance = Utils.castInt(rr.get("distance"));
+            this.points.put(id, distance);
+            System.out.println(points);
+        }
+
+
+        if(obj.get("riverData")!= null){
+            JSONObject a = (JSONObject) obj.get("riverData");
+            this.riverDepth = Utils.castInt(a.get("riverDepth"));
+            this.riverWidth = Utils.castInt(a.get("riverWidth"));
+        } else {
+            this.riverWidth = 0;
+            this.riverDepth = 0;
+        }
 
         
     }
 
     public int getDistance() {
-        return distance;
+        return 100;
     }
 
-    int distance;
+    public ArrayList<Integer> getDestinations(){
+        ArrayList<Integer> destinations = new ArrayList<>();
+        this.points.forEach((key, value) -> destinations.add(key));
+        return destinations;
+    }
+
 
 
     public String getName() {
@@ -73,4 +88,22 @@ public class Landmark {
         return isCity;
     }
 
+    public boolean hasFork(){
+        return (this.points.size() > 1);
+    }
+
+    public int FirstFork(){
+        ArrayList<Integer> e = this.getDestinations();
+        return e.get(0);
+    }
+
+    public int FirstForkDistance(){
+        ArrayList<Integer> e = this.getDestinations();
+        return this.points.get(e.get(0));
+    }
+
+    public int getId(){
+        return this.id;
+    }
 }
+

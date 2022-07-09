@@ -40,11 +40,14 @@ public class Game {
         Keyboard.close();
     }
 
-    private static void TravelLoop(Player player, Landmark destination){
-        int StartingMilesTraveled = player.getMilesTraveled();
+    private static void TravelLoop(Player player, Landmark current, Landmark destination){
+        int startingMilesTraveled = player.getMilesTraveled();
+        int currentTravelMiles = 0;
+        int distanceToDestination = current.points.get(destination.getId());
         int travelDelay = Settings.getInt("travel_delay");
         int travelDistance = Settings.getInt("travel_distance");
-        while(player.getMilesTraveled() < (destination.p1Miles + StartingMilesTraveled)){
+        while(currentTravelMiles < distanceToDestination) {
+                //destination.p1Miles + startingMilesTraveled)){
 
             //travel the road
             Utils.println("travel", travelDistance);
@@ -54,29 +57,45 @@ public class Game {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            currentTravelMiles += travelDistance;
             player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
         }
         Utils.println("arrived", destination.name);
     }
 
     private static void GameLoop(Player player){
-        Landmark current = TRAILS.get(0);
-            while(current.id != 17){
-                Landmark next = TRAILS.get(current.nextPoint1);
-                TravelLoop(player, next);
+        Landmark current = TRAILS.get(1);
+        Landmark next;
+            while(current.id <= 17){
+                //determine next destination
+                if(current.hasFork()){
+                    //there are multiple options
+
+                    //gather data from Current Landmark Options
+                    ArrayList<Integer> distance = new ArrayList<>();
+                    ArrayList<String> placeNames = new ArrayList<>();
+                    HashMap<Integer, String> destinations = new HashMap<>();
+                    current.points.forEach((key, value) -> {
+                        Landmark lm = TRAILS.get(key);
+                        distance.add(value);
+                        placeNames.add(lm.name);
+                        destinations.put(key, lm.name);
+                    });
+
+                    //display fork message
+                    Utils.println("fork", placeNames.get(0), distance.get(0), placeNames.get(1), distance.get(1));
+
+                    //get user choice and set destination landmark
+                    next = TRAILS.get(Utils.choice(destinations));
+                } else {
+                    //no option set next destination
+                    next = TRAILS.get(current.FirstFork());
+                }
+                TravelLoop(player, current, next);
                 System.out.println("Total Miles Traveled: " + player.getMilesTraveled());
                 current = next;
-                if(current.nextPoint2 >= 0){
-                    //TODO: query user which point to go to
-                    next = TRAILS.get(current.nextPoint2);
-                } else {
-                    next = TRAILS.get(current.nextPoint1);
-                }
             }
-/*        Iterator i = TRAILS.iterator();
-        while(i.hasNext()) {
-            TravelLoop(player, (Landmark) i.next());
-        }*/
+
         Utils.println("congrats");
     }
 

@@ -17,13 +17,13 @@ public class LandmarkParser {
 
     File file = new File("resources/landmarks/landmarks.json");
 
-    JSONObject obj = null;
+    JSONObject obj;
 
     try {
       obj = (JSONObject) parser.parse(new FileReader(file));
       for(Object i : obj.values()){
         Landmark lm = new Landmark((JSONObject) i);
-        list.put(Integer.parseInt(String.valueOf(lm.id)), lm);
+        list.put(lm.id, lm);
       }
     } catch (IOException | ParseException e) {
       // TODO Auto-generated catch block

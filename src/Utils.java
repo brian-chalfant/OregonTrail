@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,6 +29,19 @@ public class Utils {
         text.print("select_choice");
         int playerChoice = Keyboard.nextInt();
         return args[playerChoice-1];
+    }
+
+    public static <T,R> T choice(HashMap<T, R> map){
+        ArrayList<T> list = new ArrayList<>();
+        int count = 0;
+        for (Map.Entry<T,R> me: map.entrySet()){
+            text.println("choice", count+1, me.getValue());
+            list.add(me.getKey());
+            count++;
+        }
+        text.print("select_choice");
+        int playerChoice = Keyboard.nextInt();
+        return list.get(playerChoice-1);
     }
 
     public static void print(String key, Object ...args){
