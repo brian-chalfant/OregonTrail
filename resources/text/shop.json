@@ -1,0 +1,84 @@
+{
+    "shop_intro": [
+        "Hello, I'm Matt. So you're going to Oregon! I can fix you up with what you need.",
+        "\t- A team of oxen to pull your wagon",
+        "\t- clothing for both summer and winter",
+        "\t- plenty of food for the trip",
+        "\t- ammunition for your rifles",
+        "\t- spare parts for your wagon"
+    ],
+    "loading_wagon": [
+        "Now Loading the Wagon"
+    ],
+    "display_shop_item": [
+        "%d. %s: %s"
+    ],
+    "display_shop_total": [
+        "----------------------------------------------",
+        "Your current bill is: %s",
+        "You have: %s",
+        "What would you like to buy?"
+    ],
+    "overbudget": [
+        "Sorry, you can't afford all of that"
+    ],
+    "invalid_shop_input": [
+        "Sorry what was that sonny boy?"
+    ],
+    "buy_spare_parts": [
+        "*Buy Spare Parts*",
+        "Bill so far: %s",
+        "It's a good idea to have a few",
+        "spare parts for your wagon",
+        "Here are the prices:",
+        "",
+        "wagon wheel - $10 each",
+        "wagon axle - $10 each",
+        "wagon tongue - $10 each"
+    ],
+    "buy_single_part": [
+        "How many %s?: "
+    ],
+    "buy_ammo": [
+        "*Buy Ammo*",
+        "Bill so far: %s",
+        "I sell ammunition in boxes of 20",
+        "bullets. Each box costs $2.00.",
+        "",
+        "How many boxes do",
+        "you want?"
+    ],
+    "buy_clothing": [
+        "*Buy Clothes*",
+        "Bill so far: ",
+        "You'll need warm clothing in the",
+        "mountains. I recommend taking at",
+        "least 2 sets of clothes per person.",
+        "Each set is $10.00.",
+        "",
+        "How many sets of clothes do",
+        "you want?"
+    ],
+    "buy_food": [
+        "*Buy Food*",
+        "Bill so far: %s",
+        "I recommend that you take at least",
+        "200 pounds of food for each person",
+        "in your family.  I see that you have",
+        "5 people in all.  You'll need flour,",
+        "sugar, bacon, and coffee.  My price",
+        "is 20 cents a pound.",
+        "",
+        "How many pounds of food do",
+        "you want? "
+    ],
+    "buy_oxen": [
+        "*Buy Oxen*",
+        "Bill so far: %s",
+        "There are 2 Oxen in a Yoke",
+        "I recommend at least 3 Yoke",
+        "I charge $30 a yoke.",
+        "",
+        "How many would you like?"
+    ]
+}

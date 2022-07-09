@@ -1,0 +1,8 @@
+{
+    "select_choice": [
+        "Enter your choice: "
+    ],
+    "choice": [
+        "%d: %s"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "player_name": [
+        "Enter Player Name: "
+    ],
+    "occupation": [
+        "Choose an Occupation: "
+    ],
+    "family_members": [
+        "Please enter the names of your four party members"
+    ],
+    "family_member": [
+        ": "
+    ],
+    "select_month": [
+        "It is 1848.  Your jumping off place for Oregon is Independence, Missouri.",
+        "You must decide which month to leave Independence."
+    ]
+}

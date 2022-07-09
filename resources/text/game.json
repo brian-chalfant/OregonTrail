@@ -1,0 +1,11 @@
+{
+    "travel": [
+        "Traveling %d miles..."
+    ],
+    "arrived": [
+        "Arrived at %s"
+    ],
+    "congrats": [
+        "Congratulations!"
+    ]
+}
