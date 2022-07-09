@@ -3,7 +3,7 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class Landmark {
     final String name;
