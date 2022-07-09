@@ -19,6 +19,29 @@ public class Keyboard {
         }
     }
 
+    public static int ensureNextInt(){
+        try{
+            return nextInt();
+        }catch (NumberFormatException e){
+            Utils.println("invalid_number");
+            return ensureNextInt();
+        }
+    }
+
+    public static int ensureNextInt(int minValue, int maxValue){
+        int x = ensureNextInt();
+        if(x >= minValue && x <= maxValue) return x;
+        Utils.println("out_of_range", minValue, maxValue);
+        return ensureNextInt(minValue, maxValue);
+    }
+
+    public static int ensureNextInt(int minValue){
+        int x = ensureNextInt();
+        if(x >= minValue) return x;
+        Utils.println("under_range", minValue);
+        return ensureNextInt(minValue);
+    }
+
     public static void close(){
         kb.close();
     }
