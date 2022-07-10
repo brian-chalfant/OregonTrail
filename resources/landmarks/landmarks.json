@@ -4,6 +4,7 @@
     "id": 0,
     "isCity": true,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "first saying",
       "second saying",
@@ -22,6 +23,7 @@
     "id": 1,
     "isCity": false,
     "isRiver": true,
+    "altRoute": false,
     "sayings": [
       "first saying",
       "second saying",
@@ -43,6 +45,7 @@
     "id": 2,
     "isCity": false,
     "isRiver": true,
+    "altRoute": false,
     "sayings": [
       "Big Louie, a trail driver, tells you: Be careful you don't push those animals too hard!  Keep em moving but set them a fair pace.  Can't keep driving 'em so fast or you'll end up with lame-footed animals.  A lame ox is about as good to you as a dead one.",
       "A party leader heading east tells you: We've had enough! Pesky flies all day and mosquitoes all night!  It's either baking sun or oceans of mud -- and sometimes both.  Worry over Indians attacking -- haven't seen any yet, but still a worry.",
@@ -64,6 +67,7 @@
     "id": 3,
     "isCity": true,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "A fort soldier tells you: The trails from the jumping off places -- Independence, St. Joseph, Council Bluffs -- come together at Fort Kearney.  This new fort was built by the U.S. Army to protect those bound for California and Oregon",
       "Big Louie tells you: The Platte River valley forms a natural round-away from Fort Kearney to Fort Laramie.  Travelers bound for California, Utah, and Oregon all take this road.  Could be ehe easiest Stretch of the whole trip Should see antelope and plenty of buffalo.",
@@ -82,6 +86,7 @@
     "id": 4,
     "isCity": false,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "Alonzo Delano tells you: About noon yesterday we came in sight of Chimney Rock looming up in the distance like the lofty tower of some town.  We did not tire gazing on it.  It was about 20 miles from us, and stayed in sight 'til we reached it today.",
       "Aunt Rebecca Sims tells you: I hear terrible stories about wagon parties running out of food before Oregon -- the whole party starving to death.  We must check our supplies often; e might not get there as soon as we think.  Always plan for the worst, I say.",
@@ -100,6 +105,7 @@
     "id": 5,
     "isCity": true,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "A mountain man tells you: These greenhorns heading across the Rockies know nothing about surviving in the mountains.  It gets awful cold up there, even in summer.  Many a traveler crossing the mountains too late in the year has gotten snowbound and died!",
       "A Sioux brave tells you: The pawnee are the mortal enemies of the Sioux.  I would not hesitate to kill any Pawene I meet.  But I have never killed a white man.  All I ask from the white man is to leave me alone, and to leave my buffalo alone.",
@@ -118,6 +124,7 @@
     "id": 6,
     "isCity": false,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "Aunt Rebecca Sims tells you: No butter or cheese or fresh fruit since Fort Laramie! Bless me, but I'd rather have my larder full of food back East than have our names carved on that rock! Well, tis a sight more cheery than all the graves we passed.",
       "Big Louie tells you: Goodbye Platte River! Goodbye sand hills and white buffalo skulls! Now we climb the Sweetwater valley to cross the Continental Divide at South Pass. Once across the Rockies, We'll make a steep descent into the Green River Valley",
@@ -136,6 +143,7 @@
     "id": 7,
     "isCity": false,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "A Mormon traveler tells you: My Family and I travel with 40 other families to the valley of the Great Salt Lake to seek religious freedom.  Back east Mormons are persecuted, In Utah, we'll join together to build a new community.  Changing desert into farm land",
       "An Arapaho Indian tells you: When the white man first crossed our lands their wagons were few.  Now they crowd the trail in great numbers.  The land is overgrazed with their many animals, Do any white men still live in he East?  My people talk of Moving",
@@ -158,6 +166,7 @@
     "id": 8,
     "isCity": false,
     "isRiver": true,
+    "altRoute": false,
     "sayings": [
       "A Shoshoni Indian tells you: When wagons first started coming through here, we did not mind.   We even found it good to trade game and fish with the travelers and help them cross the rivers.  Now there are too many white men and too little land for grazing",
       "Big Louie tells you: Five dollars to ferry us over the Green River?  Those ferrymen will make a hundred dollars before breakfast! We'll keep down river until we find a place to ford our wagon and animals.  What little money we have left, we'll keep",
@@ -177,6 +186,7 @@
   "fortBridger": {
     "name": "Fort Bridger",
     "id": 9,
+    "altRoute": true,
     "isCity": true,
     "isRiver": false,
     "sayings": [
@@ -197,6 +207,7 @@
     "id": 10,
     "isCity": false,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "Miles Hendrick tells you: I've heard it said that there are many cutoffs to take to shorten the journey -- that by taking all the shortcuts, you can save many days on the trail.  And why not? Saving time and provisions is worth the risk!",
       "Celinda Hines tells you: My, the Soda Springs are so pretty! Seem to spout at regular intervals.  Felt good to just rest and not be jostled in the wagon all day.  When I get to Oregon, I'll have a soft feather bed and never sleep in a wagon again",
@@ -215,6 +226,7 @@
     "id": 11,
     "isCity": true,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "Miles Hendrick tells you: Well, Friend, this is where we part.  I'm bound for California with an imposing desert to cross.  And you -- you've got the Snake River to cross, which I hear is no picnic!  Write us, you or the Missus, Just as soon as you reach Oregon",
       "Aunt Rebecca tells you: Hear there's mountain sheep around here.  Enough water too, but hardly a stick of wood.  Thank heaven for Fort Hall! But I'm real sorry to be saying goodbye to cousin Miles and all the folks heading for California.",
@@ -233,6 +245,7 @@
     "id": 12,
     "isCity": false,
     "isRiver": true,
+    "altRoute": false,
     "sayings": [
       "Big Louie tells you: See that wild river? That's the Snake.  Many a craft's been swamped in her foaming rapids.  Her waters will travel all the way to Oregon!  We'll be crossing her soon, and then again after Fort Boise.  Take care at the Crossing!",
       "A frantic Wife Tells you: It says right here in the Shively guidebook: \"You must hire an Indian to pilot you at the crossings of the snake river, it being dangerous if not perfectly understood.\"  But my husband insists on crossing without a guide!",
@@ -254,6 +267,7 @@
     "id": 13,
     "isCity": true,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "Jacob Hofsteader tells you:  Every night, event though I ache from the day's toils, my head is filled with dreams of the rich farm land of the Willamette Valley.  I will build myself a fine, handsome homestead -- and I'm certain I'll be ich within five years.",
       "A trader with 6 mules tells you: You'll not get yer wagon over them Blue Mountains, mister.  Leave it! Cross yer goods over with pack animals. Pieces of wagons litter the trail -- left by them folks who don't heed good advice.",
@@ -272,6 +286,7 @@
     "id": 14,
     "isCity": false,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [
       "Marnie Stewart tells you: We followed the edge of the desert from Fort Boise to the forbidding wall of the Blue Mountains.  The hills were dreadful steep!  Locking both wheels and coming down slow, we got down safe.  Poor Animals!  No grass or water for days.",
       "Jacob Hofsteader tells you:  This valley of the Grande Ronde is the most beautiful sight I've seen in months.  Water and graze in abundance!  And if this valley is so fine, the Willamette must be twice as fine!  We'll be sittin' pretty in our new homestead",
@@ -293,6 +308,7 @@
   "fortWallaWalla": {
     "name": "Fort Walla Walla",
     "id": 15,
+    "altRoute": true,
     "isCity": true,
     "isRiver": false,
     "sayings": [
@@ -313,6 +329,7 @@
     "id": 16,
     "isCity": false,
     "isRiver": true,
+    "altRoute": false,
     "sayings": [
       "a mountain man tells you: These last hundred miles to the Willamette Valley are the roughest -- either rafting down the swift and turbulent Columbia River or driving your wagon over the steep Cascade Mountains.  Hire an Indian guide if you take the river",
       "Amy Witherspoon tells you: My cousin Lydia engaged passage down the Columbia with Indians -- a canoe with 17 people and luggage!  The wind blew so heavy they had to lay by. Near dark, high waves cam eup over their heads!  Finally, they made it to shore safely.",
@@ -335,6 +352,7 @@
     "id": 17,
     "isCity": false,
     "isRiver": false,
+    "altRoute": true,
     "sayings": [],
     "nextPoints": [],
     "riverData": null
@@ -344,6 +362,7 @@
     "id": 18,
     "isCity": false,
     "isRiver": false,
+    "altRoute": false,
     "sayings": [],
     "nextPoints": [],
     "riverData": null

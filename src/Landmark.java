@@ -9,11 +9,11 @@ public class Landmark {
     final String name;
     boolean isCity;
      boolean isRiver;
+     boolean altRoute;
      int id;
      JSONArray sayings;
      HashMap<Integer, Integer> points = new HashMap<>();
-     int riverDepth;
-     int riverWidth;
+     RiverData riverData;
 
 
     public Landmark(String name, boolean isCity, boolean isRiver, int distance) {
@@ -44,24 +44,23 @@ public class Landmark {
         this.isCity = (boolean) obj.get("isCity");
         this.isRiver = (boolean) obj.get("isRiver");
         this.sayings = (JSONArray) obj.get("sayings");
-
+        this.altRoute = (boolean) obj.get("altRoute");
         JSONArray p = (JSONArray) obj.get("nextPoints");
         for (Object o : p) {
             JSONObject rr = (JSONObject) o;
             int id = Utils.castInt(rr.get("id"));
             int distance = Utils.castInt(rr.get("distance"));
             this.points.put(id, distance);
-            System.out.println(points);
         }
 
 
         if(obj.get("riverData")!= null){
             JSONObject a = (JSONObject) obj.get("riverData");
-            this.riverDepth = Utils.castInt(a.get("riverDepth"));
-            this.riverWidth = Utils.castInt(a.get("riverWidth"));
+
+            this.riverData.setRiverDepth(Utils.castInt(a.get("riverDepth")));
+            this.riverData.setRiverWidth(Utils.castInt(a.get("riverWidth")));
         } else {
-            this.riverWidth = 0;
-            this.riverDepth = 0;
+            this.riverData = null;
         }
 
         
@@ -104,6 +103,10 @@ public class Landmark {
 
     public int getId(){
         return this.id;
+    }
+
+    public String toString(){
+        return this.name;
     }
 }
 
