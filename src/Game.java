@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Game {
-    static HashMap<Integer, Landmark> TRAILS = LandmarkParser.parseLandmarks();
+    static LandmarkLinkedList TRAILS = LandmarkParser.parseLandmarks();
 
 
     public static void main(String[] args) {
@@ -40,10 +37,10 @@ public class Game {
         Keyboard.close();
     }
 
-    private static void TravelLoop(Player player, Landmark current, Landmark destination){
-        int startingMilesTraveled = player.getMilesTraveled();
+    private static void TravelLoop(Player player, Node current, Node destination, Destination finalDestination){
+        //int startingMilesTraveled = player.getMilesTraveled();  Not used YET
         int currentTravelMiles = 0;
-        int distanceToDestination = current.points.get(destination.getId());
+        int distanceToDestination = finalDestination.getDistance();
         int travelDelay = Settings.getInt("travel_delay");
         int travelDistance = Settings.getInt("travel_distance");
         while(currentTravelMiles < distanceToDestination) {
@@ -60,38 +57,38 @@ public class Game {
             currentTravelMiles += travelDistance;
             player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
         }
-        Utils.println("arrived", destination.name);
+        Utils.println("arrived", finalDestination.getName());
     }
 
     private static void GameLoop(Player player){
-        Landmark current = TRAILS.get(1);
-        Landmark next;
-            while(current.id <= 17){
+        Node current = TRAILS.head;
+        Node next;
+            while(current.hasNext()){
                 //determine next destination
-                if(current.hasFork()){
+                Destination finalDestination;
+                if(current.altNext() != null){
                     //there are multiple options
-
-                    //gather data from Current Landmark Options
-                    ArrayList<Integer> distance = new ArrayList<>();
-                    ArrayList<String> placeNames = new ArrayList<>();
-                    HashMap<Integer, String> destinations = new HashMap<>();
-                    current.points.forEach((key, value) -> {
-                        Landmark lm = TRAILS.get(key);
-                        distance.add(value);
-                        placeNames.add(lm.name);
-                        destinations.put(key, lm.name);
-                    });
+                    Destination d1 = current.getData().points[0];
+                    Destination d2 = current.getData().points[1];
 
                     //display fork message
-                    Utils.println("fork", placeNames.get(0), distance.get(0), placeNames.get(1), distance.get(1));
+                    Utils.println("fork",d1.getName(),d1.getDistance(), d2.getName(), d2.getDistance());
 
                     //get user choice and set destination landmark
-                    next = TRAILS.get(Utils.choice(destinations));
+                    finalDestination = Utils.choice(current.getData().points);
+                    if (finalDestination.equals(d1)){
+                        next = current.next();
+                    } else {
+                        next = current.altNext();
+
+                    }
                 } else {
-                    //no option set next destination
-                    next = TRAILS.get(current.FirstFork());
+                    //no option, set next destination
+                    finalDestination = current.getData().points[0];
+                    finalDestination.setName(current.next().getData().name);
+                    next = current.next();
                 }
-                TravelLoop(player, current, next);
+                TravelLoop(player, current, next, finalDestination );
                 System.out.println("Total Miles Traveled: " + player.getMilesTraveled());
                 current = next;
             }

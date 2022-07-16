@@ -13,6 +13,7 @@
     "nextPoints": [
       {
         "id": 1,
+        "name": "Kansas River Crossing",
         "distance": 102
       }
     ],
@@ -32,6 +33,7 @@
     "nextPoints": [
       {
         "id": 2,
+        "name": "Big Blue River Crossing",
         "distance": 82
       }
     ],
@@ -54,6 +56,7 @@
     "nextPoints": [
       {
         "id": 3,
+        "name": "Fort Kearny",
         "distance": 118
       }
     ],
@@ -76,6 +79,7 @@
     "nextPoints": [
       {
         "id": 4,
+        "name": "Chimney Rock",
         "distance": 250
       }
     ],
@@ -95,6 +99,7 @@
     "nextPoints": [
       {
         "id": 5,
+        "name": "Fort Laramie",
         "distance": 86
       }
     ],
@@ -114,6 +119,7 @@
     "nextPoints": [
       {
         "id": 6,
+        "name": "Independence Rock",
         "distance": 190
       }
     ],
@@ -133,6 +139,7 @@
     "nextPoints": [
       {
         "id": 7,
+        "name": "South Pass",
         "distance": 102
       }
     ],
@@ -152,10 +159,12 @@
     "nextPoints": [
       {
         "id": 8,
+        "name": "Green River Crossing",
         "distance": 57
       },
       {
         "id": 9,
+        "name": "Fort Bridger",
         "distance": 125
       }
     ],
@@ -175,6 +184,7 @@
     "nextPoints": [
       {
         "id": 10,
+        "name": "Soda Springs",
         "distance": 143
       }
     ],
@@ -197,6 +207,7 @@
     "nextPoints": [
       {
         "id": 10,
+        "name": "Soda Springs",
         "distance": 162
       }
     ],
@@ -216,6 +227,7 @@
     "nextPoints": [
       {
         "id": 11,
+        "name": "Fort Hall",
         "distance": 57
       }
     ],
@@ -235,6 +247,7 @@
     "nextPoints": [
       {
         "id": 12,
+        "name": "Snake River Crossing",
         "distance": 182
       }
     ],
@@ -254,6 +267,7 @@
     "nextPoints": [
       {
         "id": 13,
+        "name": "Fort Boise",
         "distance": 113
       }
     ],
@@ -276,6 +290,7 @@
     "nextPoints": [
       {
         "id": 14,
+        "name": "Blue Mountains",
         "distance": 160
       }
     ],
@@ -295,10 +310,12 @@
     "nextPoints": [
       {
         "id": 15,
+        "name": "Fort Walla Walla",
         "distance": 55
       },
       {
         "id": 16,
+        "name": "The Dalles",
         "distance": 125
       }
 
@@ -319,6 +336,7 @@
     "nextPoints": [
       {
         "id": 16,
+        "name": "The Dalles",
         "distance": 120
       }
     ],
@@ -338,10 +356,12 @@
     "nextPoints": [
       {
         "id": 17,
+        "name": "The Columbia River",
         "distance": 102
       },
       {
         "id": 18,
+        "name": "The Willemette Valley",
         "distance": 100
       }
     ],

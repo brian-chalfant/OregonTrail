@@ -1,10 +1,6 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-
 public class Landmark {
     final String name;
     boolean isCity;
@@ -12,7 +8,7 @@ public class Landmark {
      boolean altRoute;
      int id;
      JSONArray sayings;
-     HashMap<Integer, Integer> points = new HashMap<>();
+     Destination[] points = new Destination[2];
      RiverData riverData;
 
 
@@ -46,17 +42,21 @@ public class Landmark {
         this.sayings = (JSONArray) obj.get("sayings");
         this.altRoute = (boolean) obj.get("altRoute");
         JSONArray p = (JSONArray) obj.get("nextPoints");
+        int count = 0;
         for (Object o : p) {
             JSONObject rr = (JSONObject) o;
             int id = Utils.castInt(rr.get("id"));
+            String name = (String) rr.get("name");
             int distance = Utils.castInt(rr.get("distance"));
-            this.points.put(id, distance);
+            points[count] = new Destination(id, name, distance);
+            count++;
+
         }
 
 
         if(obj.get("riverData")!= null){
             JSONObject a = (JSONObject) obj.get("riverData");
-
+            this.riverData = new RiverData();
             this.riverData.setRiverDepth(Utils.castInt(a.get("riverDepth")));
             this.riverData.setRiverWidth(Utils.castInt(a.get("riverWidth")));
         } else {
@@ -70,12 +70,9 @@ public class Landmark {
         return 100;
     }
 
-    public ArrayList<Integer> getDestinations(){
-        ArrayList<Integer> destinations = new ArrayList<>();
-        this.points.forEach((key, value) -> destinations.add(key));
-        return destinations;
+    public Destination[] getDestinations(){
+        return points;
     }
-
 
 
     public String getName() {
@@ -87,19 +84,6 @@ public class Landmark {
         return isCity;
     }
 
-    public boolean hasFork(){
-        return (this.points.size() > 1);
-    }
-
-    public int FirstFork(){
-        ArrayList<Integer> e = this.getDestinations();
-        return e.get(0);
-    }
-
-    public int FirstForkDistance(){
-        ArrayList<Integer> e = this.getDestinations();
-        return this.points.get(e.get(0));
-    }
 
     public int getId(){
         return this.id;
@@ -108,5 +92,19 @@ public class Landmark {
     public String toString(){
         return this.name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        String name = this.getName();
+        if(obj instanceof Landmark) {
+            Landmark lm = (Landmark) obj;
+            String oname = lm.getName();
+            return name.equals(oname);
+        }
+        return false;
+
+    }
+
+
 }
 
