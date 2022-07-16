@@ -45,17 +45,25 @@ public class Game {
         int travelDistance = Settings.getInt("travel_distance");
         while(currentTravelMiles < distanceToDestination) {
                 //destination.p1Miles + startingMilesTraveled)){
-
+            int remainingDistance = distanceToDestination-currentTravelMiles;
             //travel the road
-            Utils.println("travel", travelDistance);
+            if(remainingDistance > travelDistance){
+                Utils.println("travel", travelDistance);
+                currentTravelMiles += travelDistance;
+                player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
+            } else {
+                Utils.println("travel", remainingDistance);
+                currentTravelMiles += remainingDistance;
+                player.setMilesTraveled(player.getMilesTraveled() + remainingDistance);
+            }
+
 
             try {
                 Thread.sleep(travelDelay);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            currentTravelMiles += travelDistance;
-            player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
+
         }
         Utils.println("arrived", finalDestination.getName());
     }

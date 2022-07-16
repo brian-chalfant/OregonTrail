@@ -3,37 +3,17 @@ import org.json.simple.JSONObject;
 
 public class Landmark {
     final String name;
-    boolean isCity;
-     boolean isRiver;
-     boolean altRoute;
-     int id;
-     JSONArray sayings;
-     Destination[] points = new Destination[2];
-     RiverData riverData;
+    final boolean isCity;
+    final boolean isRiver;
+    final boolean altRoute;
+    final int id;
+    final JSONArray sayings;
+    final Destination[] points = new Destination[2];
+
+    final RiverData riverData;
 
 
-    public Landmark(String name, boolean isCity, boolean isRiver, int distance) {
-        this.name = name;
-        this.isCity = isCity;
-        this.isRiver = isRiver;
-    }
 
-    /*
-    *   "willemettevalley":{
-    "name": "The Willemette Valley",
-    "id": 18,
-    "isCity": false,
-    "isRiver": false,
-    "s1": "",
-    "s2":"",
-    "s3":"",
-    "nextPointID": 0,
-    "p1miles": 0,
-    "nextPoint2": "",
-    "p2miles":"",
-    "riverDepth": "",
-    "riverWidth": ""
-    * */
     public Landmark(JSONObject obj) {
         this.id = Utils.castInt(obj.get("id"));
         this.name = (String) obj.get("name");
@@ -66,10 +46,6 @@ public class Landmark {
         
     }
 
-    public int getDistance() {
-        return 100;
-    }
-
     public Destination[] getDestinations(){
         return points;
     }
@@ -84,11 +60,19 @@ public class Landmark {
         return isCity;
     }
 
+    public boolean isRiver(){
+        return isRiver;
+    }
+
 
     public int getId(){
         return this.id;
     }
+    public RiverData getRiverData() {
+        return riverData;
+    }
 
+    @Override
     public String toString(){
         return this.name;
     }

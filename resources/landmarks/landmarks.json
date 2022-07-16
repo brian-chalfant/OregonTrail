@@ -6,9 +6,9 @@
     "isRiver": false,
     "altRoute": false,
     "sayings": [
-      "first saying",
-      "second saying",
-      "third saying"
+      "A traveler, Miles Hendricks, tells you: \"Did you read the Missouri Republican today? --Says some folk start for Oregon without carrying spare parts, not even an extra wagon axle.  Must think they grown on trees!  Hope they're lucky enough to find an abandoned wagon.\"\n",
+      "A town resident tells you: \"Some folks seem to think that two oxen are enough to get them to Oregon! Wo oxen can barely move a fully loaded wagon, and if one of them gets sick or dies, you won't be going anywhere.  I wouldn't go overland with less than six.\"\n",
+      "A trader named Jim tells you: \"Better take extra sets of clothing.  Trade 'em to Indians for fresh vegetables, fish, or meat.  It's well worth hiring an Indian guide at river crossings.  Expect to pay them! They're sharp traders, not easily cheated.\"\n"
     ],
     "nextPoints": [
       {
@@ -26,9 +26,9 @@
     "isRiver": true,
     "altRoute": false,
     "sayings": [
-      "first saying",
-      "second saying",
-      "third saying"
+      "A stranger tells you: \"Can't afford to take a ferry.  We're making our wagon into a boat.  We'll turn it over, caulk the bottom and sides with pitch, and use it to float our goods across.  Have to swim the animals.  Hope it doesn't rain -- the river's high enough!\"\n",
+      "A ferry operator tells you: \"Don't try to ford any river deeper than the wagon bed -- about two and a half feet.  You'll swamp your wagon and lose your supplies.  You can caulk the wagon bed and float it -- or be smart and hire me to take your wagon on my ferry!\"\n",
+      "Aunt Rebecca Sims tells you: \"With the crowds of people waiting to get on the ferry, we could be stranded here for days!  Hope there's enough graze for all those animals -- not many people carry feed!  I'd rather wait, through, than cross in a rickety wagon boat!\"\n"
     ],
     "nextPoints": [
       {
