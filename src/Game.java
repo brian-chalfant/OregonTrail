@@ -1,9 +1,6 @@
-
-import java.util.Iterator;
-import java.util.LinkedList;
-
 public class Game {
-    static LinkedList<Landmark> TRAILS = buildTrail();
+    static LandmarkLinkedList TRAILS = LandmarkParser.parseLandmarks();
+
 
     public static void main(String[] args) {
 
@@ -40,41 +37,73 @@ public class Game {
         Keyboard.close();
     }
 
-    private static void TravelLoop(Player player, Landmark destination){
+    private static void TravelLoop(Player player, Node current, Node destination, Destination finalDestination){
+        //int startingMilesTraveled = player.getMilesTraveled();  Not used YET
+        int currentTravelMiles = 0;
+        int distanceToDestination = finalDestination.getDistance();
         int travelDelay = Settings.getInt("travel_delay");
         int travelDistance = Settings.getInt("travel_distance");
-        while(player.getMilesTraveled() < destination.distance){
+        while(currentTravelMiles < distanceToDestination) {
+                //destination.p1Miles + startingMilesTraveled)){
+            int remainingDistance = distanceToDestination-currentTravelMiles;
             //travel the road
-            Utils.println("travel", travelDistance);
+            if(remainingDistance > travelDistance){
+                Utils.println("travel", travelDistance);
+                currentTravelMiles += travelDistance;
+                player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
+            } else {
+                Utils.println("travel", remainingDistance);
+                currentTravelMiles += remainingDistance;
+                player.setMilesTraveled(player.getMilesTraveled() + remainingDistance);
+            }
+
 
             try {
                 Thread.sleep(travelDelay);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            player.setMilesTraveled(player.getMilesTraveled() + travelDistance);
+
         }
-        Utils.println("arrived", destination.name);
+        Utils.println("arrived", finalDestination.getName());
     }
 
     private static void GameLoop(Player player){
-        Iterator i = TRAILS.iterator();
-        while(i.hasNext()) {
-            TravelLoop(player, (Landmark) i.next());
-        }
+        Node current = TRAILS.head;
+        Node next;
+            while(current.hasNext()){
+                //determine next destination
+                Destination finalDestination;
+                if(current.altNext() != null){
+                    //there are multiple options
+                    Destination d1 = current.getData().points[0];
+                    Destination d2 = current.getData().points[1];
+
+                    //display fork message
+                    Utils.println("fork",d1.getName(),d1.getDistance(), d2.getName(), d2.getDistance());
+
+                    //get user choice and set destination landmark
+                    finalDestination = Utils.choice(current.getData().points);
+                    if (finalDestination.equals(d1)){
+                        next = current.next();
+                    } else {
+                        next = current.altNext();
+
+                    }
+                } else {
+                    //no option, set next destination
+                    finalDestination = current.getData().points[0];
+                    finalDestination.setName(current.next().getData().name);
+                    next = current.next();
+                }
+                TravelLoop(player, current, next, finalDestination );
+                System.out.println("Total Miles Traveled: " + player.getMilesTraveled());
+                current = next;
+            }
+
         Utils.println("congrats");
     }
 
-    private static LinkedList<Landmark> buildTrail(){
-        LinkedList<Landmark> trails = new LinkedList<>();
-        Landmark kearny = new Landmark("Fort Kearny, Nebraska", true, 319);
-        trails.addFirst(kearny);
-        Landmark chimney = new Landmark("Chimney Rock, Nebraska", false, 504);
-        trails.add(chimney);
-        Landmark laramie = new Landmark("Fort Laramie, Wyoming", true, 750);
-        trails.add(laramie);
-        return trails;
-    }
 
 }
 
