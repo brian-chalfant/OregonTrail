@@ -1,0 +1,33 @@
+{
+  "starting_menu": [
+    "1. Travel the Trail",
+    "2. Learn about the trail",
+    "3. See the Oregon Top Ten",
+    "4. Toggle Sound on/off",
+    "5. Choose Management Options",
+    "6. End",
+    "----------------------------------------------"
+  ],
+
+  "learn_about_trail": [
+    "Learn about the trail....",
+    "Learn more ",
+    "even more"
+
+  ],
+
+  "oregon_top_ten": [
+    "----------------------------------------------",
+    "1. Empty \t\t\t 0",
+    "2. Empty \t\t\t 0",
+    "3. Empty \t\t\t 0",
+    "4. Empty \t\t\t 0",
+    "5. Empty \t\t\t 0",
+    "6. Empty \t\t\t 0",
+    "7. Empty \t\t\t 0",
+    "8. Empty \t\t\t 0",
+    "9. Empty \t\t\t 0",
+    "10.Empty \t\t\t 0",
+    "----------------------------------------------"
+  ]
+}
