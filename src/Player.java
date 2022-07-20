@@ -4,6 +4,16 @@ import java.util.Map;
 
 public class Player extends Member{
 
+    public boolean isSoundOn() {
+        return soundOn;
+    }
+
+    public void setSoundOn(boolean soundOn) {
+        this.soundOn = soundOn;
+    }
+
+    private boolean soundOn = true;
+    private String name;
     private Member[] members = new Member[4];
     private Occupation occupation;
     private int money;
@@ -13,6 +23,7 @@ public class Player extends Member{
     private int pace;
     private int rations;
     private Month startingDate;
+    private String status;
     private int milesTraveled;
     private ArrayList<Entity> oxen = new ArrayList<>();
 
@@ -24,13 +35,24 @@ public class Player extends Member{
         this.occupation = occupation;
         this.money = occupation.getStartingCash();
         this.pace = Settings.getInt("starting_pace");
-        
+        TRAVEL_MULTIPLIER = Settings.getDouble("travel_multiplier");
+        TRAVEL_CONSTANT = Settings.getDouble("travel_constant");
+
+
         for(int i = 0; i < members.length; i++){
             members[i] = new Member();
         }
+    }
 
-        TRAVEL_MULTIPLIER = Settings.getDouble("travel_multiplier");
-        TRAVEL_CONSTANT = Settings.getDouble("travel_constant");
+    
+    
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Member[] getMembers() {
@@ -51,6 +73,14 @@ public class Player extends Member{
 
     public void setStartingDate(Month startingDate) {
         this.startingDate = startingDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Occupation getOccupation() {
@@ -117,5 +147,9 @@ public class Player extends Member{
         double distance_per_pace = TRAVEL_MULTIPLIER * Math.log(getTotalOxenHealth()) + TRAVEL_CONSTANT;
         double max_distance = pace * Math.max(distance_per_pace, 1);
         return (int)max_distance;
+    }
+
+    public boolean getSoundOn() {
+        return this.soundOn;
     }
 }
