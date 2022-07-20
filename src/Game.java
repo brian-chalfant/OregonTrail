@@ -2,19 +2,23 @@ public class Game {
     static LandmarkLinkedList TRAILS = LandmarkParser.parseLandmarks();
 
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        Player player = new Player();
+        Menu.startingMenu(player);
         //Prompt Player Name
         Utils.print("player_name");
         String name = Keyboard.nextLine();
+        player.setName(name);
         Utils.clearScreen();
 
         //Prompt Occupation
         Utils.println("occupation");
         Occupation occ = Utils.choice(Occupation.values);
+        player.setOccupation(occ);
         Utils.clearScreen();
         //Initialize player object
-        Player player = new Player(name, occ);
+
 
         //Prompt party names
         Utils.println("family_members");

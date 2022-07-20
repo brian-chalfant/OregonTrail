@@ -3,6 +3,15 @@ import java.util.Map;
 
 public class Player {
 
+    public boolean isSoundOn() {
+        return soundOn;
+    }
+
+    public void setSoundOn(boolean soundOn) {
+        this.soundOn = soundOn;
+    }
+
+    private boolean soundOn = true;
     private String name;
     private Member[] members = new Member[4];
     private Occupation occupation;
@@ -16,10 +25,7 @@ public class Player {
     private String status;
     private int milesTraveled;
 
-    public Player(String name, Occupation occupation) {
-        this.name = name;
-        this.occupation = occupation;
-        this.money = occupation.getStartingCash();
+    public Player() {
 
         for(int i = 0; i < members.length; i++){
             members[i] = new Member();
@@ -68,6 +74,7 @@ public class Player {
 
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
+        this.money = occupation.getStartingCash();
     }
 
     public int getMoney() {
@@ -103,5 +110,9 @@ public class Player {
 
     public void setRations(int rations) {
         this.rations = rations;
+    }
+
+    public boolean getSoundOn() {
+        return this.soundOn;
     }
 }
