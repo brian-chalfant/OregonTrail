@@ -9,6 +9,17 @@
     "----------------------------------------------"
   ],
 
+  "management_menu": [
+    "1. See the current Top Ten list",
+    "2. See the original Top Ten list",
+    "3. Erase the current Top Ten list",
+    "4. Erase the tombstone messages",
+    "5. Erase saved games",
+    "6. Turn joystick on",
+    "7. Calibrate joystick",
+    "8. Return to the main menu"
+  ],
+
   "learn_about_trail": [
     "Learn about the trail....",
     "Learn more ",
