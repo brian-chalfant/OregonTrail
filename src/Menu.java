@@ -6,14 +6,14 @@ import java.util.Scanner;
 public class Menu {
 
 
-    public static void startingMenu(Player player){
+    public static void startingMenu(){
 
         try {
             int userInput;
             do {
                 Utils.clearScreen();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                Utils.println("starting_menu");
+                Utils.println("starting_menu", Game.isSoundOn()? "Off": "On");
                 userInput = Integer.parseInt(reader.readLine());
                 switch(userInput){
                     case(2):
@@ -26,15 +26,15 @@ public class Menu {
                         break;
                     case(4):
                         //Turn sound off
-                        player.setSoundOn(!player.getSoundOn());
-                        if(player.getSoundOn()){
+                        Game.setSoundOn(!Game.isSoundOn());
+                        if(Game.isSoundOn()){
                             System.out.println("Sound is now on");
                         } else{
                             System.out.println("Sound is now off");
                         }
                         break;
                     case(5):
-                        //Choose Managment Options
+                        //Choose Management Options
                         managementMenu();
                         break;
                     case(6):

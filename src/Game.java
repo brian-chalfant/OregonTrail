@@ -1,11 +1,13 @@
 public class Game {
     static LandmarkLinkedList TRAILS = LandmarkParser.parseLandmarks();
 
+    static boolean SOUND_ON = true;
+
 
 
     public static void main(String[] args) {
         Player player = new Player();
-        Menu.startingMenu(player);
+        Menu.startingMenu();
         //Prompt Player Name
         Utils.print("player_name");
         String name = Keyboard.nextLine();
@@ -110,6 +112,15 @@ public class Game {
         Utils.println("congrats");
     }
 
+
+
+    public static boolean isSoundOn() {
+        return SOUND_ON;
+    }
+
+    public static void setSoundOn(boolean soundOn) {
+        SOUND_ON = soundOn;
+    }
 
 }
 
