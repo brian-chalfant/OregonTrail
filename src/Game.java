@@ -5,9 +5,8 @@ public class Game {
 
 
 
-    public static void main(String[] args) {
+    public static void play() {
         Player player = new Player();
-        Menu.startingMenu();
         //Prompt Player Name
         Utils.print("player_name");
         String name = Keyboard.nextLine();
