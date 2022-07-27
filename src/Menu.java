@@ -6,16 +6,19 @@ import java.util.Scanner;
 public class Menu {
 
 
-    public static void startingMenu(){
+    public static void main(String[] args){
 
         try {
             int userInput;
             do {
                 Utils.clearScreen();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                Utils.println("starting_menu", Game.isSoundOn()? "Off": "On");
+                Utils.println("starting_menu",1,2,3,4, Game.isSoundOn()? "Off": "On",5,6);
                 userInput = Integer.parseInt(reader.readLine());
                 switch(userInput){
+                    case(1):
+                        Game.play();
+                        break;
                     case(2):
                         //Learn about the trail
                         learnAboutTrail();
@@ -39,9 +42,9 @@ public class Menu {
                         break;
                     case(6):
                         // Exit the game
-                        System.exit(0);
+                        //System.exit(0);
                 }
-            } while (userInput!=1);
+            } while (userInput!=6);
         } catch (IOException e) {
             System.out.println("please enter a valid number");
 
