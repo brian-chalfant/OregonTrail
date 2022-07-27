@@ -1,23 +1,23 @@
 {
   "starting_menu": [
-    "1. Travel the Trail",
-    "2. Learn about the trail",
-    "3. See the Oregon Top Ten",
-    "4. Toggle Sound %s",
-    "5. Choose Management Options",
-    "6. End",
+    "%d. Travel the Trail",
+    "%d. Learn about the trail",
+    "%d. See the Oregon Top Ten",
+    "%d. Toggle Sound %s",
+    "%d. Choose Management Options",
+    "%d. End",
     "----------------------------------------------"
   ],
 
   "management_menu": [
-    "1. See the current Top Ten list",
-    "2. See the original Top Ten list",
-    "3. Erase the current Top Ten list",
-    "4. Erase the tombstone messages",
-    "5. Erase saved games",
-    "6. Turn joystick on",
-    "7. Calibrate joystick",
-    "8. Return to the main menu"
+    "%d. See the current Top Ten list",
+    "%d. See the original Top Ten list",
+    "%d. Erase the current Top Ten list",
+    "%d. Erase the tombstone messages",
+    "%d. Erase saved games",
+    "%d. Turn joystick on",
+    "%d. Calibrate joystick",
+    "%d. Return to the main menu"
   ],
 
   "learn_about_trail": [
