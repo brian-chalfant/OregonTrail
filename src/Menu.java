@@ -73,7 +73,7 @@ public class Menu {
             do {
                 Utils.clearScreen();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                Utils.println("management_menu");
+                Utils.println("management_menu",1,2,3,4,5,6,7,8);
                 userInput = Integer.parseInt(reader.readLine());
                 switch(userInput) {
                     case (1):
