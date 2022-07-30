@@ -1,3 +1,5 @@
+import org.json.simple.JSONArray;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,8 +15,13 @@ public class Menu {
             do {
                 Utils.clearScreen();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                Utils.println("starting_menu",1,2,3,4, Game.isSoundOn()? "Off": "On",5,6);
-                userInput = Integer.parseInt(reader.readLine());
+                //Utils.println("starting_menu",1,2,3,4, Game.isSoundOn()? "Off": "On",5,6);
+                JSONArray menu = Settings.getArray("starting_menu");
+                for(int i = 0; i < menu.size(); i++) {
+                    Utils.println("display_shop_item", i + 1, menu.get(i), "");
+                }
+                    userInput = Integer.parseInt(reader.readLine());
+
                 switch(userInput){
                     case(1):
                         Game.play();
@@ -47,22 +54,22 @@ public class Menu {
             } while (userInput!=6);
         } catch (IOException e) {
             System.out.println("please enter a valid number");
+        }}
 
-        }
-
-    }
-
-    public static void learnAboutTrail(){
-        Scanner scanner = new Scanner(System.in);
-        Utils.clearScreen();
-        Utils.println("learn_about_trail");
-        System.out.println("Press Enter to return to the menu..");
-        scanner.nextLine();
+        public static void learnAboutTrail(){
+            JSONArray arr = Settings.getArray("learn_about_trail");
+            for (Object o : arr) {
+                Utils.println((String) "display_line_item", o);
+            }
+            Keyboard.nextLine();
     }
 
     public static void oregonTopTen(){
-        //TODO: print top ten
-        Utils.println("oregon_top_ten");
+        JSONArray topTen = Settings.getArray("oregon_top_ten");
+        for(int i = 0; i < topTen.size(); i++){
+            Utils.println("display_shop_item", i + 1, topTen.get(i), "");
+        }
+        Keyboard.nextLine();
 
 
     }
@@ -73,7 +80,10 @@ public class Menu {
             do {
                 Utils.clearScreen();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                Utils.println("management_menu",1,2,3,4,5,6,7,8);
+                JSONArray mgtmenu = Settings.getArray("management_menu");
+                for(int i = 0; i < mgtmenu.size(); i++) {
+                    Utils.println("display_shop_item", i + 1, mgtmenu.get(i), "");
+                }
                 userInput = Integer.parseInt(reader.readLine());
                 switch(userInput) {
                     case (1):
@@ -97,7 +107,6 @@ public class Menu {
                     case(7):
                         calibrateJoystick();
                         break;
-
                 }
 
 
@@ -111,30 +120,37 @@ public class Menu {
 
     private static void calibrateJoystick() {
         System.out.println("Joystick Calibrated");
+        Keyboard.nextLine();
     }
 
     private static void turnJoystickOn() {
         System.out.println("Joystick Functional");
+        Keyboard.nextLine();
     }
 
     private static void eraseSavedGames() {
         System.out.println("Saved Games Erased");
+        Keyboard.nextLine();
     }
 
     private static void eraseTombstone() {
         System.out.println("Tombstone Messages Reset");
+        Keyboard.nextLine();
     }
 
     private static void eraseCurrent() {
-        System.out.println("Top Ten List Rest");
+        oregonTopTen();
+
     }
 
     private static void originalTopTen() {
-        Utils.println("oregon_top_ten");
+        oregonTopTen();
+
     }
 
     private static void currentTopTen() {
-        Utils.println("oregon_top_ten");
+        oregonTopTen();
+
     }
 
 }

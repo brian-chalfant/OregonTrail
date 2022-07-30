@@ -1,3 +1,5 @@
+import org.json.simple.JSONArray;
+
 import java.io.File;
 import java.util.HashMap;
 
@@ -22,5 +24,9 @@ public class Settings {
 
     public static int getInt(String key){
         return Utils.castInt(settings.data.get(key));
+    }
+
+    public static JSONArray getArray(String key){
+        return (JSONArray)settings.data.getOrDefault(key, null);
     }
 }

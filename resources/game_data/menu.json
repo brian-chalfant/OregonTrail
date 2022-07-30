@@ -1,0 +1,41 @@
+{
+  "starting_menu": [
+    "Travel the Trail",
+    "Learn about the trail",
+    "See the Oregon Top Ten",
+    "Toggle Sound On/Off",
+    "Choose Management Options",
+    "End"
+  ],
+
+  "management_menu": [
+    "See the current Top Ten list",
+    "See the original Top Ten list",
+    "Erase the current Top Ten list",
+    "Erase the tombstone messages",
+    "Erase saved games",
+    "Turn joystick on",
+    "Calibrate joystick",
+    "Return to the main menu"
+  ],
+
+  "learn_about_trail": [
+    "Learn about the trail....",
+    "Learn more ",
+    "even more"
+
+  ],
+
+  "oregon_top_ten": [
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0",
+    "Empty \t\t\t 0"
+  ]
+}
