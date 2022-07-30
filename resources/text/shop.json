@@ -13,6 +13,9 @@
     "display_shop_item": [
         "%d. %s: %s"
     ],
+    "display_line_item": [
+        "%s"
+    ],
     "clear_shop": [
         "%d. Clear"
     ],

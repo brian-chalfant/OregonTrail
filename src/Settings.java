@@ -1,3 +1,5 @@
+import org.json.simple.JSONArray;
+
 import java.io.File;
 import java.util.HashMap;
 
@@ -26,5 +28,9 @@ public class Settings {
 
     public static double getDouble(String key){
         return Utils.castDouble(settings.data.get(key));
+    }
+
+    public static JSONArray getArray(String key){
+        return (JSONArray)settings.data.getOrDefault(key, null);
     }
 }
