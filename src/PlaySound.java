@@ -1,9 +1,6 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
-
-import sun.audio.*;
+import javax.sound.sampled.*;
 
 public class PlaySound {
     public static PlaySound playSound = new PlaySound("resources/game_data");
@@ -14,8 +11,28 @@ public class PlaySound {
      * usage PlaySound.play("Key that is in JSON File")
      * JSON file located in resources/game_data
      * @param key - Key in JSON file related to Path of Sound File
+     *            ex:         PlaySound.play("Yankee Doodle");
      */
     public static void play(String key) {
+        Clip sound = null;
+        try {
+            String path = PlaySound.getString(key);
+            File file = new File(path);
+            AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+            AudioFormat format = stream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(stream);
+            clip.start();
+
+
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+/*aLine) F
         String path = PlaySound.getString(key);
 
         InputStream in;
@@ -28,6 +45,7 @@ public class PlaySound {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+*/
 
 
     }
