@@ -56,6 +56,10 @@ public class Utils {
         return ((Long)o).intValue();
     }
 
+    public static double castDouble(Object o){
+        return (Double)o;
+    }
+
     public static <T> Object[] load(Class<T> clazz, String path){
         JSONArray jsonArray = readJSONArray(new File(path));
         Object[] values = new Object[jsonArray.size()];

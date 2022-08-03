@@ -1,5 +1,8 @@
 {
     "travel_delay": 100,
-    "travel_distance": 20,
+    "travel_multiplier": 5.0,
+    "travel_constant": -19.0,
+    "starting_pace": 2,
+    "base_health": 100,
     "PORT": 2332
 }

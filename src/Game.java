@@ -44,10 +44,10 @@ public class Game {
         int currentTravelMiles = 0;
         int distanceToDestination = finalDestination.getDistance();
         int travelDelay = Settings.getInt("travel_delay");
-        int travelDistance = Settings.getInt("travel_distance");
         while(currentTravelMiles < distanceToDestination) {
                 //destination.p1Miles + startingMilesTraveled)){
             int remainingDistance = distanceToDestination-currentTravelMiles;
+            int travelDistance = player.getTravelDistance();
             //travel the road
             if(remainingDistance > travelDistance){
                 Utils.println("travel", travelDistance);
