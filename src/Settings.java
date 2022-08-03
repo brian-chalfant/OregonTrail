@@ -23,4 +23,8 @@ public class Settings {
     public static int getInt(String key){
         return Utils.castInt(settings.data.get(key));
     }
+
+    public static double getDouble(String key){
+        return Utils.castDouble(settings.data.get(key));
+    }
 }

@@ -1,9 +1,9 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Player {
+public class Player extends Member{
 
-    private String name;
     private Member[] members = new Member[4];
     private Occupation occupation;
     private int money;
@@ -13,25 +13,24 @@ public class Player {
     private int pace;
     private int rations;
     private Month startingDate;
-    private String status;
     private int milesTraveled;
+    private ArrayList<Entity> oxen = new ArrayList<>();
+
+    private final double TRAVEL_MULTIPLIER;
+    private final double TRAVEL_CONSTANT;
 
     public Player(String name, Occupation occupation) {
-        this.name = name;
+        this.setName(name);
         this.occupation = occupation;
         this.money = occupation.getStartingCash();
-
+        this.pace = Settings.getInt("starting_pace");
+        
         for(int i = 0; i < members.length; i++){
             members[i] = new Member();
         }
-    }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+        TRAVEL_MULTIPLIER = Settings.getDouble("travel_multiplier");
+        TRAVEL_CONSTANT = Settings.getDouble("travel_constant");
     }
 
     public Member[] getMembers() {
@@ -52,14 +51,6 @@ public class Player {
 
     public void setStartingDate(Month startingDate) {
         this.startingDate = startingDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Occupation getOccupation() {
@@ -83,6 +74,11 @@ public class Player {
             int amount = inventory.getOrDefault(p.getKey(), 0) + p.getValue();
             inventory.put(p.getKey(), amount);
         }
+
+        int newOxenCount = inventory.getOrDefault(ShopItem.get("oxen"), 0);
+        for(int i = 0; i < newOxenCount; i++){
+            oxen.add(new Entity());
+        }
     }
 
     public int getInventory(ShopItem item){
@@ -103,5 +99,23 @@ public class Player {
 
     public void setRations(int rations) {
         this.rations = rations;
+    }
+
+    public int getAliveOxenCount(){
+        int count = 0;
+        for(Entity e: oxen) count += e.isAlive() ? 1: 0;
+        return count;
+    }
+
+    public int getTotalOxenHealth(){
+        int health = 0;
+        for(Entity e: oxen) health += e.health;
+        return health;
+    }
+
+    public int getTravelDistance(){
+        double distance_per_pace = TRAVEL_MULTIPLIER * Math.log(getTotalOxenHealth()) + TRAVEL_CONSTANT;
+        double max_distance = pace * Math.max(distance_per_pace, 1);
+        return (int)max_distance;
     }
 }
