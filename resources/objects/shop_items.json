@@ -1,12 +1,14 @@
 [{
         "name": "Oxen",
         "price": 3000,
-        "quantity": 2
+        "quantity": 2,
+        "max_quantity": 20
     },
     {
         "name": "Food",
         "price": 20,
-        "quantity": 1
+        "quantity": 1,
+        "max_quantity": 2000
     },
     {
         "name": "Clothing",
@@ -21,16 +23,19 @@
     {
         "name": "Wagon Wheels",
         "price": 1000,
-        "quantity": 1
+        "quantity": 1,
+        "max_quantity": 3
     },
     {
         "name": "Wagon Axle",
         "price": 1000,
-        "quantity": 1
+        "quantity": 1,
+        "max_quantity": 3
     },
     {
         "name": "Wagon Tongue",
         "price": 1000,
-        "quantity": 1
+        "quantity": 1,
+        "max_quantity": 3
     }
 ]
