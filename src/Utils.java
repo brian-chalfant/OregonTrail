@@ -101,4 +101,11 @@ public class Utils {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public static int promptln(boolean clearScreen){
+
+        int value = Keyboard.nextInt();
+        if(clearScreen) Utils.clearScreen();
+        return value;
+    }
 }
