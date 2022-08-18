@@ -11,5 +11,11 @@
 
     "fork": [
         "The road forks here, you can go to %s, which is %d miles away, or you can go to %s which is %d miles away"
+    ],
+    "sound_on": [
+        "The Sound is On"
+    ],
+    "sound_off": [
+        "The Sound is Off"
     ]
 }
