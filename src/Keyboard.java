@@ -6,6 +6,12 @@ public class Keyboard {
     public static String nextLine(){
         return kb.nextLine();
     }
+    public static String nextLine(boolean clearScreen){
+        String str = kb.nextLine();
+        if(clearScreen)
+            Utils.clearScreen();
+        return str;
+    }
 
     public static int nextInt(){
         return Integer.parseInt(nextLine());
