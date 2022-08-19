@@ -6,17 +6,16 @@ public class Game {
 
 
     public static void play() {
-        Player player = new Player();
         //Prompt Player Name
         Utils.print("player_name");
         String name = Keyboard.nextLine();
-        player.setName(name);
+        //player.setName(name);
         Utils.clearScreen();
 
         //Prompt Occupation
         Utils.println("occupation");
         Occupation occ = Utils.choice(Occupation.values);
-        player.setOccupation(occ);
+        Player player = new Player(name, occ);
         Utils.clearScreen();
         //Initialize player object
 
