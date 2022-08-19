@@ -4,6 +4,8 @@ import java.util.Map;
 
 public class Player extends Member{
 
+
+
     public boolean isSoundOn() {
         return soundOn;
     }
@@ -29,6 +31,7 @@ public class Player extends Member{
 
     private final double TRAVEL_MULTIPLIER;
     private final double TRAVEL_CONSTANT;
+
 
     public Player(String name, Occupation occupation) {
         this.setName(name);
