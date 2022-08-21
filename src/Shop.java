@@ -26,7 +26,10 @@ public class Shop {
                     if(group.size() > 1){
                         Utils.println("buy_single_part", item.name.toLowerCase());
                     }
-                    bill += purchaseItem(purchases, item, player.getMoney() - bill);
+
+                    int item_cart_count = purchases.getOrDefault(item, 0);
+                    int item_inventory_count = player.getInventory(item);
+                    bill += purchaseItem(purchases, item, player.getMoney() - bill, item_cart_count + item_inventory_count);
                 }
             }else if (userInput == groups.length){
                 // clear shopping items
@@ -54,13 +57,22 @@ public class Shop {
         return String.format((cents >= 0 ? "" : "-") + "$%d.%02d", absCents / 100, absCents % 100);
     }
 
-    private static int purchaseItem(HashMap<ShopItem, Integer> purchases, ShopItem item, int balance){
-        int amount = Keyboard.ensureNextInt(0);
+    private static int purchaseItem(HashMap<ShopItem, Integer> purchases, ShopItem item, int balance, int current_quantity){
+        // get the item amount from the user
+        int user_amount = Keyboard.ensureNextInt(0);
         Utils.clearScreen();
+
+        // max number of number items that can still be purchased - atleast zero
+        int max_amount = Math.max(0, (item.max_quantity - current_quantity) / item.quantity);
+        int amount = Math.min(user_amount, max_amount);
         int cost = item.price * amount;
+
         if(cost > balance || cost < 0){
             Utils.println("overbudget");
             return 0;
+        }
+        if(amount < user_amount){
+            Utils.println("pass_wagon_capacity", item.max_quantity / item.quantity);
         }
         purchases.put(item, amount * item.quantity + purchases.getOrDefault(item, 0));
         return cost;

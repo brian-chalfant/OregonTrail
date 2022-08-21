@@ -28,6 +28,9 @@
     "overbudget": [
         "Sorry, you can't afford all of that"
     ],
+    "pass_wagon_capacity": [
+        "Sorry, your wagon was filled to capacity: %d items"
+    ],
     "invalid_shop_input": [
         "Sorry what was that sonny boy?"
     ],
