@@ -11,6 +11,7 @@ public class Landmark {
     final Destination[] points = new Destination[2];
 
     final RiverData riverData;
+    final String state;
 
 
 
@@ -21,6 +22,7 @@ public class Landmark {
         this.isRiver = (boolean) obj.get("isRiver");
         this.sayings = (JSONArray) obj.get("sayings");
         this.altRoute = (boolean) obj.get("altRoute");
+        this.state = ((String)obj.get("state")).toLowerCase();
         JSONArray p = (JSONArray) obj.get("nextPoints");
         int count = 0;
         for (Object o : p) {

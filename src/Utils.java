@@ -1,9 +1,11 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,13 +24,16 @@ public class Utils {
         return out;
     }
 
-    public static <T> T choice(T[] args){
+    public static <T> int choiceIndex(T[] args){
         for(int i=0; i<args.length;i++){
             text.println("choice", i+1, args[i]);
         }
         text.print("select_choice");
-        int playerChoice = Keyboard.nextInt();
-        return args[playerChoice-1];
+        return Keyboard.nextInt() - 1;
+    }
+
+    public static <T> T choice(T[] args){
+        return args[choiceIndex(args)];
     }
 
     public static <T,R> T choice(HashMap<T, R> map){
@@ -69,6 +74,30 @@ public class Utils {
         return values;
     }
 
+    public static String[] loadLines(String path, boolean lowercase){
+        ArrayList<String> out = new ArrayList<>();
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File(path));
+            while(scan.hasNextLine()){
+                String line = scan.nextLine();
+                if(lowercase) line = line.toLowerCase();
+                out.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            return null;
+        } finally {
+            if(scan != null) scan.close();
+        }
+
+        return out.toArray(new String[0]);
+    }
+
+    public static String[] loadLines(String path){
+        return loadLines(path, false);
+    }
+
+
     public static HashMap<String, Object> readJSON(File file){
         HashMap<String, Object> data = new HashMap<>();
         JSONObject obj = (JSONObject)parseJSON(file);
@@ -94,11 +123,56 @@ public class Utils {
 
     private static <T> Object parse(Class<T> clazz, JSONObject o){
         if(clazz == Occupation.class) return new Occupation(o);
-        if(clazz == Month.class) return new Month(o);
         if(clazz == ShopItem.class) return new ShopItem(o);
         if(clazz == ShopItemGroup.class) return new ShopItemGroup(o);
         System.err.println("Failed to parse: " + clazz);
         return null;
+    }
+
+    public static HashMap<String, ArrayList<String>> readCsvCols(String path){
+        HashMap<String, ArrayList<String>> out = new HashMap<>();
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File(path));
+            String[] headers = scan.nextLine().split(",");
+            for(String header: headers){
+                out.put(header, new ArrayList<>());
+            }
+
+            while(scan.hasNextLine()){
+                String[] tokens = scan.nextLine().split(",");
+                for(int i = 0; i < tokens.length; i++){
+                    out.get(headers[i]).add(tokens[i]);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if(scan != null) scan.close();
+        }
+        return out;
+    }
+
+    public static ArrayList<HashMap<String, String>> readCsvRows(String path){
+        ArrayList<HashMap<String, String>> out = new ArrayList<>();
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File(path));
+            String[] headers = scan.nextLine().split(",");
+            while(scan.hasNextLine()){
+                String[] tokens = scan.nextLine().split(",");
+                HashMap<String, String> row = new HashMap<>();
+                for(int i = 0; i < tokens.length; i++){
+                    row.put(headers[i], tokens[i]);
+                }
+                out.add(row);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if(scan != null) scan.close();
+        }
+        return out;
     }
 
     public static void clearScreen() {
@@ -111,5 +185,14 @@ public class Utils {
         int value = Keyboard.nextInt();
         if(clearScreen) Utils.clearScreen();
         return value;
+    }
+
+    public static double lerp(double newValue, double oldValue, double ratio){
+        return ratio * newValue + (1.0 - ratio) * oldValue;
+    }
+
+    public static int indexOf(Object[] array, Object t){
+        for(int i = 0; i < array.length; i++) if(array[i].equals(t)) return i;
+        return -1;
     }
 }
