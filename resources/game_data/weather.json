@@ -1,0 +1,11 @@
+{
+    "weather_lerp": 0.75,
+    "rain_threshold": 1.2,
+    "low_wind_threshold": 4.0,
+    "high_wind_threshold": 12.0,
+    "freezing_point": 32.0,
+    "dew_point": 50.0,
+    "dew_threshold": 1.5,
+    "rain_count_threshold": 7,
+    "drought_count_threshold": 5
+}

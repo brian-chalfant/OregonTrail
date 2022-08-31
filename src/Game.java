@@ -1,5 +1,10 @@
+import java.time.Month;
+
 public class Game {
     static LandmarkLinkedList TRAILS = LandmarkParser.parseLandmarks();
+    static String[] months = Utils.loadLines("resources/objects/months.txt", false);
+    static String[] states = Utils.loadLines("resources/objects/state.txt", true);
+    static WeatherSystem weather;
 
     static boolean SOUND_ON = true;
 
@@ -32,7 +37,10 @@ public class Game {
 
         //Prompt starting date
         Utils.println("select_month");
-        player.setStartingDate(Utils.choice(Month.values));
+        int month = Month.valueOf(Utils.choice(months).toUpperCase()).getValue();
+        player.setMonth(month);
+        weather = new WeatherSystem(states[0], month);
+
         Utils.clearScreen();
         Utils.println("shop_intro");
         Shop.run(player);
@@ -62,6 +70,8 @@ public class Game {
                 currentTravelMiles += remainingDistance;
                 player.setMilesTraveled(player.getMilesTraveled() + remainingDistance);
             }
+            weather.update(destination.getData().state, player.getMonth());
+            player.nextDay();
 
 
             try {

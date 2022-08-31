@@ -4,5 +4,6 @@
     "travel_constant": -19.0,
     "starting_pace": 2,
     "base_health": 100,
-    "PORT": 2332
+    "PORT": 2332,
+    "start_year": 1843
 }

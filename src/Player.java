@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,13 +26,15 @@ public class Player extends Member{
 
     private int pace;
     private int rations;
-    private Month startingDate;
+    private LocalDate date;
     private String status;
     private int milesTraveled;
     private ArrayList<Entity> oxen = new ArrayList<>();
 
     private final double TRAVEL_MULTIPLIER;
     private final double TRAVEL_CONSTANT;
+
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
 
     public Player(String name, Occupation occupation) {
@@ -70,12 +74,20 @@ public class Player extends Member{
         this.milesTraveled = milesTraveled;
     }
 
-    public Month getStartingDate() {
-        return startingDate;
+    public int getMonth() {
+        return this.date.getMonthValue();
     }
 
-    public void setStartingDate(Month startingDate) {
-        this.startingDate = startingDate;
+    public String getDate() {
+        return this.date.format(dateFormatter);
+    }
+
+    public void setMonth(int month) {
+        this.date = LocalDate.parse(String.format("%02d/01/%d", month, Settings.getInt("start_year")), dateFormatter);
+    }
+
+    public void nextDay(){
+        this.date = this.date.plusDays(1);
     }
 
     public String getName() {
